@@ -5,6 +5,23 @@
 ![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 ![WebSocket](https://img.shields.io/badge/WebSocket-RealTime-brightgreen?style=for-the-badge)
 
+## 📸 Giao diện ứng dụng
+
+*(Ghi chú cho Dev: Thay thế đường dẫn `./images/...` bên dưới bằng ảnh chụp màn hình thực tế của bạn)*
+
+### 1. Màn hình Thu ngân (POS) & Gộp đơn hàng
+> Hiển thị sơ đồ bàn với mã màu thông minh. Trạng thái bàn tự động cập nhật khi khách hàng đặt món.
+![Màn hình Thu Ngân](./images/man_hinh_thu_ngan.png) 
+
+### 2. Màn hình Quản lý Bếp (Real-time)
+> Nhận thông báo đơn hàng mới tức thì qua WebSocket mà không cần tải lại trang.
+![Màn hình Bếp](./images/man_hinh_bep.png)
+
+### 3. Giao diện Đặt món (Menu)
+> Hiển thị danh sách món ăn, cho phép thêm món vào giỏ hàng và thanh toán tiện lợi.
+![Màn hình Đặt Món](./images/man_hinh_menu.png)
+
+---
 FastFood FAF là một hệ thống phần mềm quản lý nhà hàng F&B hiện đại, được phát triển với trọng tâm là **Đồng bộ hóa thời gian thực (Real-time)** giữa bộ phận Thu ngân và Bếp, giúp tối ưu hóa quy trình phục vụ khách hàng và quản lý nguyên liệu chặt chẽ.
 
 ---
@@ -59,11 +76,12 @@ FastFood FAF là một hệ thống phần mềm quản lý nhà hàng F&B hiệ
 4.Frontend sẽ chạy tại cổng: http://localhost:5173. Mở đường dẫn này trên trình duyệt (Chrome/Edge) để sử dụng.
 
 ## Tài khoản demo
-Vai trò (Role),Tài khoản (Username),Mật khẩu (Password),Chức năng chính
-Quản trị viên,ADMIN,123456,"Toàn quyền cấu hình, quản lý kho, xem báo cáo thống kê."
-Thu ngân,ThuNgan,123456,"Lên đơn, chọn bàn, thanh toán, giải phóng bàn."
-Bếp,Bep,123456,"Nhận đơn thời gian thực, báo hoàn thành món."
-Khách hàng,Ban01,123456,Khách tự xem menu và đặt món tại bàn.
+| Vai trò | Tài khoản (Username) | Mật khẩu (Password) | Chức năng chính |
+|---|---|---|---|
+| Quản trị viên | ADMIN | 123456 | Toàn quyền cấu hình, quản lý kho, xem báo cáo thống kê |
+| Thu ngân | ThuNgan | 123456 | Lên đơn, chọn bàn, thanh toán, giải phóng bàn |
+| Bếp | Bep | 123456 | Nhận đơn thời gian thực, báo hoàn thành món |
+| Khách hàng | Ban01 | 123456 | Khách tự xem menu và đặt món tại bàn |
 
 ## đội ngũ phát triển 
 1.Nguyễn Viết Chung
