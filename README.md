@@ -64,7 +64,7 @@ FastFood FAF là một hệ thống phần mềm quản lý nhà hàng F&B hiệ
 ### Bước 2: Chạy Backend (Spring Boot)
 1. Mở thư mục `backend` bằng IDE (IntelliJ IDEA / Eclipse / VS Code).
 2. Kiểm tra file `application.properties` (hoặc `application.yml`) để đảm bảo thông tin kết nối MySQL (username/password) khớp với máy của bạn.
-3. Chạy file khởi động `FastFoodApplication.java`.
+3. Chạy file khởi động `VD : FastFoodApplication.java`.
 4. Backend sẽ khởi chạy tại cổng: `http://localhost:8080`.
 
 ### Bước 3: Chạy Frontend (ReactJS)
