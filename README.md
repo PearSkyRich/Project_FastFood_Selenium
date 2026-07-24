@@ -91,3 +91,6 @@ FastFood FAF là một hệ thống phần mềm quản lý nhà hàng F&B hiệ
 3.Trần Khánh Duy
 
 4.Phan Quang Hiếu
+
+# Project_FastFood_Selenium
+Learning automation testing using selenium
