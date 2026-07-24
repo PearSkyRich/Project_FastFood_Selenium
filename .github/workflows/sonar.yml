@@ -33,4 +33,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args: -Dsonar.projectKey=duy110405_Project_FastFoodShop -Dsonar.organization=duy110405 -Dsonar.sources=backend/src/main,frontend -Dsonar.java.binaries=backend/target/classes -Dsonar.exclusions=**/node_modules/**
+          args: -Dsonar.projectKey=PearSkyRich_Project_FastFood_Selenium -Dsonar.organization=Lê_Thiên_Phú -Dsonar.sources=backend/src/main,frontend -Dsonar.java.binaries=backend/target/classes -Dsonar.exclusions=**/node_modules/**
