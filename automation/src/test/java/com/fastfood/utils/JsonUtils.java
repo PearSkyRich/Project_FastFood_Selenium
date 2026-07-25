@@ -1,20 +1,23 @@
 package com.fastfood.utils;
 
-import com.fastfood.model.LoginData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.InputStream;
 
 public class JsonUtils {
 
-    public static LoginData[] readLoginData() throws Exception {
+    private static final ObjectMapper mapper = new ObjectMapper();
 
-        ObjectMapper mapper = new ObjectMapper();
+    public static <T> T[] readData(String fileName, Class<T[]> clazz) throws Exception {
 
         InputStream input = JsonUtils.class
                 .getClassLoader()
-                .getResourceAsStream("login.json");
+                .getResourceAsStream(fileName);
 
-        return mapper.readValue(input, LoginData[].class);
+        if (input == null) {
+            throw new RuntimeException("Không tìm thấy file: " + fileName);
+        }
+
+        return mapper.readValue(input, clazz);
     }
 }

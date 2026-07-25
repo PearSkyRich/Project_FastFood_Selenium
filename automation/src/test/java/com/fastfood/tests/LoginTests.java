@@ -12,20 +12,39 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
-    @Test(dataProvider = "loginData",
-            dataProviderClass = LoginDataProvider.class)
-    public void loginTest(String username,
-                          String password,
-                          String expectedUrl,
-                          boolean expected) {
+    @Test(
+            dataProvider = "loginSuccessData",
+            dataProviderClass = LoginDataProvider.class
+    )
+    public void loginSuccessTest(String username,
+                                 String password,
+                                 String expectedUrl) {
 
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.login(username, password);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.urlContains(expectedUrl));
-        boolean actual = driver.getCurrentUrl().contains(expectedUrl);
-        Assert.assertEquals(actual, expected);
+
+        Assert.assertTrue(driver.getCurrentUrl().contains(expectedUrl));
     }
 
+    @Test(
+            dataProvider = "loginFailData",
+            dataProviderClass = LoginDataProvider.class
+    )
+    public void loginFailTest(String username,
+                              String password,
+                              String expectedUrl) {
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.login(username, password);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains(expectedUrl));
+
+        Assert.assertTrue(driver.getCurrentUrl().contains(expectedUrl));
+    }
 }

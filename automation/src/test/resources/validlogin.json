@@ -1,0 +1,37 @@
+[
+  {
+    "username": "admin",
+    "password": "123456",
+    "expectedUrl": "/admin/dashboard"
+  },
+  {
+    "username": "ThuNgan",
+    "password": "123456",
+    "expectedUrl": "/payment"
+  },
+  {
+    "username": "Bep",
+    "password": "123456",
+    "expectedUrl": "/kitchen"
+  },
+  {
+    "username": "Ban01",
+    "password": "123456",
+    "expectedUrl": "/menu"
+  },
+  {
+    "username": "Ban02",
+    "password": "123456",
+    "expectedUrl": "/menu"
+  },
+  {
+    "username": "Ban03",
+    "password": "123456",
+    "expectedUrl": "/menu"
+  },
+  {
+    "username": "Ban04",
+    "password": "123456",
+    "expectedUrl": "/menu"
+  }
+]

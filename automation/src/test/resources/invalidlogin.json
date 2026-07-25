@@ -1,0 +1,12 @@
+[
+  {
+    "username": "admin",
+    "password": "111111",
+    "expectedUrl": "/login"
+  },
+  {
+    "username": "test",
+    "password": "test",
+    "expectedUrl": "/login"
+  }
+]
