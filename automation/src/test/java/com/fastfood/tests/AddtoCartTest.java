@@ -13,8 +13,11 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class AddtoCartTest extends BaseTest {
+
+    private static final int PRODUCT_QUANTITY = 3;
 
     @Test
     public void addToCart() {
@@ -26,9 +29,11 @@ public class AddtoCartTest extends BaseTest {
         System.out.println(
                 driver.findElements(By.xpath("//h5")).size()
         );
-        menuPage.openProduct("Đùi gà chiên giòn");
-        menuPage.addToCart();
-        assertEquals(menuPage.getCartCount(), 1);
+        menuPage.openProduct("H001","Đùi gà chiên giòn");
+        menuPage.addToCart(PRODUCT_QUANTITY);
+        assertEquals(menuPage.getCartCount(), PRODUCT_QUANTITY);
+        assertTrue("Added product should be displayed in the cart", menuPage.isOpenedProductInCart());
+        assertEquals(menuPage.getOpenedProductQuantityInCart(), PRODUCT_QUANTITY);
         driver.quit();
 
     }

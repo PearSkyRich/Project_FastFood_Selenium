@@ -572,6 +572,7 @@ const FoodMenu = () => {
                     {foodQuantity}
                   </Text>
                   <Button
+                      id="btn-plus"
                     shape="circle"
                     icon={<PlusOutlined />}
                     onClick={() => setFoodQuantity(foodQuantity + 1)}
@@ -614,7 +615,8 @@ const FoodMenu = () => {
         <List
           dataSource={cart}
           renderItem={(item) => (
-            <Card size="small" style={{ marginBottom: 10, borderRadius: 8 }}>
+            <Card id={`cart-item-${item.idFood}`}
+                  size="small" style={{ marginBottom: 10, borderRadius: 8 }}>
               <div
                 style={{
                   display: 'flex',
@@ -634,7 +636,8 @@ const FoodMenu = () => {
                   }}
                 />
                 <div style={{ flex: 1 }}>
-                  <Text strong>{item.foodName}</Text>
+                  <Text id={`food-name-${item.idFood}`} strong>
+                    {item.foodName}</Text>
                   <br />
                   <Text type="secondary">{item.unitPrice.toLocaleString('vi-VN')} đ</Text>
                 </div>
@@ -644,7 +647,7 @@ const FoodMenu = () => {
                     icon={<MinusOutlined />}
                     onClick={() => updateCartQuantity(item.idFood, -1)}
                   />
-                  <Text>{item.quantity}</Text>
+                  <Text  id={`food-quantity-${item.idFood}`}>{item.quantity}</Text>
                   <Button
                     size="small"
                     icon={<PlusOutlined />}
