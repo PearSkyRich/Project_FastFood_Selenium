@@ -1,0 +1,152 @@
+{
+  "info": {
+    "name": "FastFoodShop API",
+    "description": "API testing for FastFood Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"ban01\",\n    \"password\": \"a123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login"
+            }
+          }
+        }
+      ]
+    },
+
+
+    {
+      "name": "Food",
+      "item": [
+        {
+          "name": "Get Food Menu",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/foods/menu"
+            }
+          }
+        },
+
+        {
+          "name": "Get Food By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/foods/H001"
+            }
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"categoryName\": \"Đồ uống\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/foodCategory"
+            }
+          }
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"categoryName\": \"Đồ uống mới\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/foodCategory/DM001"
+            }
+          }
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/foodCategory/DM001"
+            }
+          }
+        }
+
+      ]
+    },
+
+
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "Get Food Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/foodCategory"
+            }
+          }
+        }
+      ]
+    },
+
+
+    {
+      "name": "Sales",
+      "item": [
+        {
+          "name": "Get Tables",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/sales/tables"
+            }
+          }
+        },
+
+        {
+          "tableNumber": "Ban01",
+          "customerName": "Khách lẻ",
+          "createdBy": "ban01",
+          "items": [
+            {
+              "foodId": "H001",
+              "quantity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
