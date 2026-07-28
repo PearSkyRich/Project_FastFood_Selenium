@@ -368,13 +368,15 @@ const FoodMenu = () => {
         backgroundColor: '#a30000', // Giả sử màu đỏ thương hiệu
         boxShadow: '0 3px 10px rgba(0,0,0,0.1)'
       }}>
-        <Badge count={getTotalItems()} offset={[5, 0]}>
-          <Button
+        <Badge
+            count={getTotalItems()} offset={[5, 0]}>
+          <Button id="cart-button"
             type="text"
             icon={<ShoppingCartOutlined style={{ fontSize: 28, color: 'white' }} />}
             onClick={() => setIsCartModalOpen(true)}
           />
         </Badge>
+        <span id="cart-count">{getTotalItems()}</span>
 
         {/* 2. THAY THẾ CHỮ "LOGO" CŨ BẰNG ẢNH THỰC TẾ */}
         <div style={{
@@ -692,6 +694,7 @@ const FoodMenu = () => {
           </div>
 
           <Button
+              id="btn-order"
             type="primary"
             size="large"
             shape="round"

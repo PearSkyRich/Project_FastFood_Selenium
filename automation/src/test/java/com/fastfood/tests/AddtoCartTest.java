@@ -5,9 +5,11 @@ import com.fastfood.pages.LoginPage;
 import com.fastfood.pages.MenuPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -25,7 +27,8 @@ public class AddtoCartTest extends BaseTest {
 
         LoginPage loginPage=new LoginPage(driver);
         MenuPage menuPage=new MenuPage(driver);
-        loginPage.login("ban01","a123456");
+        String user = "Ban01";
+        loginPage.login(user,"a123456");
         System.out.println(
                 driver.findElements(By.xpath("//h5")).size()
         );
@@ -34,7 +37,9 @@ public class AddtoCartTest extends BaseTest {
         assertEquals(menuPage.getCartCount(), PRODUCT_QUANTITY);
         assertTrue("Added product should be displayed in the cart", menuPage.isOpenedProductInCart());
         assertEquals(menuPage.getOpenedProductQuantityInCart(), PRODUCT_QUANTITY);
-        driver.quit();
+        driver.findElement(By.id("btn-order")).click();
 
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(d -> menuPage.getCartCount() == 0);
     }
 }

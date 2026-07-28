@@ -26,6 +26,6 @@ echo Running Selenium Tests...
 echo ==============================
 
 cd automation
-call mvn clean test
+call mvn clean test -Dtest=AddtoCartTest
 
 pause

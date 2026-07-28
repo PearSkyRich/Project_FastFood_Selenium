@@ -111,11 +111,21 @@ public class MenuPage {
                     + exception.getClass().getSimpleName() + ": " + exception.getMessage());
         }
     }
-    private By cartBadge = By.cssSelector("sup.ant-badge-count");
-    private By cartButton = By.cssSelector(".header button");
+
+    private By cartButton = By.id("cart-button");
+    private By cartCount = By.id("cart-count");
 
     public int getCartCount() {
-        return Integer.parseInt(wait.until(ExpectedConditions.visibilityOfElementLocated(cartBadge)).getText());
+
+        WebElement element = wait.until(
+                ExpectedConditions.presenceOfElementLocated(By.id("cart-count"))
+        );
+
+        String text = element.getAttribute("textContent").trim();
+
+        System.out.println("Cart = " + text);
+
+        return Integer.parseInt(text);
     }
 
     public boolean isOpenedProductInCart() {
@@ -149,13 +159,5 @@ public class MenuPage {
         return By.id("cart-item-" + openedProductId);
     }
 
-    private String toXPathLiteral(String value) {
-        if (!value.contains("'")) {
-            return "'" + value + "'";
-        }
-        if (!value.contains("\"")) {
-            return "\"" + value + "\"";
-        }
-        return "concat('" + value.replace("'", "', \"'\", '") + "')";
-    }
+
 }
