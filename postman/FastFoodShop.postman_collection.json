@@ -1,16 +1,46 @@
 {
   "info": {
+    "_postman_id": "882b0110-4f01-4dbe-aa5f-4a39c8ac07c8",
     "name": "FastFoodShop API",
     "description": "API testing for FastFood Management System",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54138497",
+    "_collection_link": "https://go.postman.co/collection/54138497-882b0110-4f01-4dbe-aa5f-4a39c8ac07c8?source=collection_link"
   },
-
   "item": [
     {
       "name": "Authentication",
       "item": [
         {
           "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Login successful\", function () {\r",
+                  "    pm.expect(json.username).to.not.be.undefined;\r",
+                  "    pm.expect(json.fullName).to.not.be.undefined;\r",
+                  "    pm.expect(json.role).to.not.be.undefined;\r",
+                  "});\r",
+                  "\r",
+                  "// Lưu thông tin người dùng để dùng cho các request khác\r",
+                  "pm.environment.set(\"username\", json.username);\r",
+                  "pm.environment.set(\"fullName\", json.fullName);\r",
+                  "pm.environment.set(\"role\", json.role);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [
@@ -21,17 +51,102 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"username\": \"ban01\",\n    \"password\": \"a123456\"\n}"
+              "raw": "{\n    \"username\": \"ADMIN\",\n    \"password\": \"a123456\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/login"
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
             }
-          }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Fail",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 401\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"111111\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Logout success\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Đăng xuất thành công\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
-
-
     {
       "name": "Food",
       "item": [
@@ -39,42 +154,226 @@
           "name": "Get Food Menu",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/foods/menu"
+              "raw": ""
             }
-          }
+          },
+          "response": []
         },
-
         {
           "name": "Get Food By ID",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/foods/H001"
+              "raw": ""
             }
-          }
+          },
+          "response": []
         },
         {
-          "name": "Create Category",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
+          "name": "Get Kitchen Food",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Kitchen food returned\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
-            ],
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/foods/kitchen/H001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foods",
+                "kitchen",
+                "H001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Food Costs",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Food costs returned\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/foods/costs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foods",
+                "costs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put Update Food",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Food updated\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"categoryName\": \"Đồ uống\"\n}"
+              "raw": "{\r\n    \"foodName\": \"Burger Gà Cay\",\r\n    \"idCategory\": \"LH001\",\r\n    \"unitPrice\": 50000,\r\n    \"description\": \"Burger gà cay\",\r\n    \"imageUrlFood\": \"/images/hamburger_ga.jpg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
-              "raw": "{{baseUrl}}/foodCategory"
+              "raw": "{{baseUrl}}/foods/H003",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foods",
+                "H003"
+              ]
             }
-          }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Food",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Delete success\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/foods/H018",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foods",
+                "H018"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "Get Food Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
         },
         {
           "name": "Update Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Category updated\", function () {\r",
+                  "    let json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data.categoryName).to.eql(\"Đồ uống mới\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "PUT",
             "header": [
@@ -85,43 +384,109 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"categoryName\": \"Đồ uống mới\"\n}"
+              "raw": "{\n    \"categoryName\": \"Soda\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/foodCategory/DM001"
+              "raw": "{{baseUrl}}/foodCategory/LH001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foodCategory",
+                "LH001"
+              ]
             }
-          }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 or 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Category created\", function () {\r",
+                  "    let json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(201);\r",
+                  "    pm.expect(json.data.categoryName).to.eql(\"Đồ uống\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"categoryName\": \"Cocktail\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/foodCategory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foodCategory"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Delete Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Delete success\", function () {\r",
+                  "    let json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.message).to.include(\"Xóa\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "DELETE",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/foodCategory/DM001"
+              "raw": "{{baseUrl}}/foodCategory/LH004",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foodCategory",
+                "LH004"
+              ]
             }
-          }
-        }
-
-      ]
-    },
-
-
-    {
-      "name": "Category",
-      "item": [
-        {
-          "name": "Get Food Categories",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{baseUrl}}/foodCategory"
-            }
-          }
+          },
+          "response": []
         }
       ]
     },
-
-
     {
       "name": "Sales",
       "item": [
@@ -129,22 +494,889 @@
           "name": "Get Tables",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/sales/tables"
+              "raw": ""
             }
-          }
-        },
-
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ingredients",
+      "item": [
         {
-          "tableNumber": "Ban01",
-          "customerName": "Khách lẻ",
-          "createdBy": "ban01",
-          "items": [
+          "name": "Get All Ingredients",
+          "event": [
             {
-              "foodId": "H001",
-              "quantity": 3
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Get all ingredients successfully\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data.length).to.be.above(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
             }
-          ]
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ingredient",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ingredient"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Ingredient By Id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Ingredient is NL001\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data.idIngredient).to.eql(\"NL001\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ingredient/NL001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ingredient",
+                "NL001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Ingredient",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Update Ingredient",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Ingredient updated\", function () {\r",
+                  "    const json = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data.ingredientName).to.eql(\"Đùi gà tươi\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ingredientName\": \"Đùi gà tươi\",\r\n    \"imageUrlIngredient\": \"/images/dui_ga.jpg\",\r\n    \"quantityStock\": 70,\r\n    \"unit\": \"Cái\",\r\n    \"importPrice\": 55000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ingredient/NL001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ingredient",
+                "NL001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Ingredient",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ingredient/NL015",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ingredient",
+                "NL015"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Create Receipt",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 201\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Receipt created\", function () {\r",
+                  "    pm.expect(json.code).to.eql(201);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"receiptDate\": \"2026-07-28\",\r\n    \"supplierName\": \"Công ty ABC\",\r\n    \"status\": \"PENDING\",\r\n    \"createdBy\": \"admin\",\r\n    \"details\": [\r\n        {\r\n            \"ingredientId\": \"NL001\",\r\n            \"quantityImport\": 20,\r\n            \"importPrice\": 35000\r\n        },\r\n        {\r\n            \"ingredientId\": \"NL011\",\r\n            \"quantityImport\": 50,\r\n            \"importPrice\": 9000\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/inventory/receipts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "receipts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Receipts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Receipt list\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/receipts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "receipts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Receipt",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Receipt updated\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"receiptDate\": \"2026-07-29\",\r\n    \"supplierName\": \"Công ty XYZ\",\r\n    \"status\": \"PENDING\",\r\n    \"createdBy\": \"admin\",\r\n    \"details\": [\r\n        {\r\n            \"ingredientId\": \"NL002\",\r\n            \"quantityImport\": 100,\r\n            \"importPrice\": 42000\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/inventory/receipts/PN001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "receipts",
+                "PN001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Receipt",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/receipts/PN001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "receipts",
+                "PN001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Receipt",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Search success\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Search result\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/receipts/search?ingredientId=NL001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "receipts",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "ingredientId",
+                  "value": "NL001"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Inventory Report",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Inventory report\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Report returned\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/report",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "report"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Low Stock",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Low stock\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Low stock list\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/low-stock",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "low-stock"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consumption History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Consumption history\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"History returned\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/inventory/consumption-history",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "inventory",
+                "consumption-history"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Kitchen",
+      "item": [
+        {
+          "name": "Pending Orders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Pending orders returned\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/kitchen/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "kitchen",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Completed Orders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Completed orders returned\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/kitchen/orders/completed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "kitchen",
+                "orders",
+                "completed"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remaining Foods",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Remaining foods returned\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "    pm.expect(json.data).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/kitchen/foods/remaining",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "kitchen",
+                "foods",
+                "remaining"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Food Served",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Food marked served\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/kitchen/orders/items/1/served",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "kitchen",
+                "orders",
+                "items",
+                "1",
+                "served"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sales",
+      "item": [
+        {
+          "name": "Get Tables",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sales/tables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sales",
+                "tables"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Occupied Tables",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Array returned\", function () {\r",
+                  "    pm.expect(pm.response.json()).to.be.an(\"array\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sales/tables/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sales",
+                "tables",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order By Table",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sales/tables/Ban01/order",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sales",
+                "tables",
+                "Ban01",
+                "order"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Order created\", function () {\r",
+                  "    pm.expect(json.status).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tableNumber\": \"Ban01\",\r\n    \"customerName\": \"Khách lẻ\",\r\n    \"createdBy\": \"ban01\",\r\n    \"items\": [\r\n        {\r\n            \"foodId\": \"H001\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"foodId\": \"H002\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sales/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sales",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Payment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Payment success\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"orderId\": \"ORD019\",\r\n    \"customerPhone\": \"0987654321\",\r\n    \"paymentMethod\": \"TRANSFER\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sales/payments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sales",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Complete Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Payment success\", function () {\r",
+                  "    pm.expect(json.code).to.eql(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Has payment data\", function () {\r",
+                  "    pm.expect(json.data).to.not.be.null;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sales/orders/ORD019/complete",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sales",
+                "orders",
+                "ORD019",
+                "complete"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
