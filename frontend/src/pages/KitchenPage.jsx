@@ -141,7 +141,10 @@ const KitchenPage = () => {
                    {filteredTableOrders.map((table) => {
                       const expanded = expandedMap[table.tableNumber] !== false;
                       return (
-                        <div key={table.tableNumber} className="table-card">
+                        <div
+                            id={`kitchen-table-${table.tableNumber}`}
+                            data-count={table.items.length}
+                            key={table.tableNumber} className="table-card">
                            <div className="table-card-header">
                               <span>Bàn: {table.tableNumber} - {formatElapsed(table.elapsedMinutes)}</span>
                               <Button 
@@ -162,7 +165,8 @@ const KitchenPage = () => {
                                         <p className="item-title">{item.foodName}</p>
                                         <p className="item-qty">Số lượng: {item.quantity}</p>
                                      </div>
-                                     <Button 
+                                     <Button
+                                         id={`btn-served-${table.tableNumber}-${item.foodId}`}
                                         type="primary" 
                                         className="done-btn-new"
                                         onClick={() => onServeItem(item.orderDetailId)} 

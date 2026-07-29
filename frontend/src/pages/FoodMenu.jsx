@@ -376,6 +376,7 @@ const FoodMenu = () => {
             onClick={() => setIsCartModalOpen(true)}
           />
         </Badge>
+        {/*thêm dòng code cho việc test*/}
         <span id="cart-count">{getTotalItems()}</span>
 
         {/* 2. THAY THẾ CHỮ "LOGO" CŨ BẰNG ẢNH THỰC TẾ */}

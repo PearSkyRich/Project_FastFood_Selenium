@@ -21,7 +21,12 @@ public class MenuPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
+    private By orderButton = By.id("btn-order");
 
+    public void placeOrder() {
+        wait.until(ExpectedConditions.elementToBeClickable(orderButton));
+        driver.findElement(orderButton).click();
+    }
     public void openProduct(String productId, String productName) {
         openedProductId = productId;
         openedProductName = productName;
@@ -149,7 +154,7 @@ public class MenuPage {
         );
         return Integer.parseInt(quantity.getText());
     }
-    private void openCart() {
+    public void openCart() {
         if (driver.findElements(getOpenedProductCartItem()).isEmpty()) {
             wait.until(ExpectedConditions.elementToBeClickable(cartButton)).click();
         }

@@ -37,7 +37,7 @@ public class AddtoCartTest extends BaseTest {
         assertEquals(menuPage.getCartCount(), PRODUCT_QUANTITY);
         assertTrue("Added product should be displayed in the cart", menuPage.isOpenedProductInCart());
         assertEquals(menuPage.getOpenedProductQuantityInCart(), PRODUCT_QUANTITY);
-        driver.findElement(By.id("btn-order")).click();
+        menuPage.placeOrder();
 
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(d -> menuPage.getCartCount() == 0);

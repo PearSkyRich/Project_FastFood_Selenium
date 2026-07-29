@@ -175,16 +175,21 @@ const PaymentPage = () => {
                 return (
                   <Col xs={12} sm={8} md={6} lg={4} key={table.tableNumber}>
                     <Button
-                      block
-                      style={{
-                        height: 52,
-                        color: textColor,
-                        border: 'none',
-                        background: bgColor,
-                        boxShadow: selectedTable === table.tableNumber ? '0 0 0 2px rgba(24, 144, 255, 0.5)' : 'none',
-                        fontWeight: 'bold'
-                      }}
-                      onClick={() => handleSelectTable(table)}
+                        id={`table-${table.tableNumber}`}
+                        data-status={table.status}
+                        block
+                        style={{
+                          height: 52,
+                          color: textColor,
+                          border: 'none',
+                          background: bgColor,
+                          boxShadow:
+                              selectedTable === table.tableNumber
+                                  ? '0 0 0 2px rgba(24, 144, 255, 0.5)'
+                                  : 'none',
+                          fontWeight: 'bold'
+                        }}
+                        onClick={() => handleSelectTable(table)}
                     >
                       {table.tableNumber}
                     </Button>
@@ -231,7 +236,8 @@ const PaymentPage = () => {
                 <Space wrap>
                   {/* BÀN ĐỎ: Hiện nút Dọn bàn */}
                   {orderDetail?.status === 'SERVED' ? (
-                    <Button 
+                    <Button
+                        id="btn-release-table"
                       type="primary" 
                       style={{ background: '#52c41a', borderColor: '#52c41a', fontWeight: 'bold' }} 
                       disabled={paying} 
@@ -252,18 +258,25 @@ const PaymentPage = () => {
                   (
                     <>
                       <Input
+                          id="customer-phone"
                         placeholder="SĐT khách (không bắt buộc)"
                         value={customerPhone}
                         onChange={(e) => setCustomerPhone(e.target.value)}
                         style={{ width: 180 }}
                       />
-                      <Select
-                        value={paymentMethod}
-                        options={PAYMENT_METHOD_OPTIONS}
-                        onChange={setPaymentMethod}
-                        style={{ width: 140 }}
-                      />
-                      <Button type="primary" danger disabled={paying || !orderDetail?.orderId} onClick={() => setIsConfirmOpen(true)}>
+                      <div id="payment-method-wrapper">
+                        <Select
+                            id="payment-method"
+                            value={paymentMethod}
+                            options={PAYMENT_METHOD_OPTIONS}
+                            onChange={setPaymentMethod}
+                            style={{ width: 140 }}
+                        />
+                      </div>
+
+                      <Button
+                          id="btn-payment"
+                          type="primary" danger disabled={paying || !orderDetail?.orderId} onClick={() => setIsConfirmOpen(true)}>
                         Thanh toán ngay
                       </Button>
                     </>
@@ -277,6 +290,9 @@ const PaymentPage = () => {
 
       {/* Modal xác nhận */}
       <Modal
+          okButtonProps={{
+            id: "btn-confirm-payment"
+          }}
         title="Xác nhận thanh toán"
         open={isConfirmOpen}
         onCancel={() => setIsConfirmOpen(false)}
