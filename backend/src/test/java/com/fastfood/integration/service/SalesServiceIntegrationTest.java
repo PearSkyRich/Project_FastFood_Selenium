@@ -156,7 +156,7 @@ class SalesIntegrationTest {
         );
 
         assertEquals(
-                1,
+                3,
                 result.getOrderDetails().size()
         );
 
