@@ -18,7 +18,15 @@ VALUES
         '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
         'R_001'
     );
-
+INSERT INTO food_ingredients (
+    quantity_used,
+    id_ingredient,
+    id_food
+) VALUES
+      (1.00, 'NL001', 'H002'),
+      (0.20, 'NL002', 'H002'),
+      (1.00, 'NL003', 'H003'),
+      (1.00, 'NL004', 'H004');
 
 INSERT INTO food_categories(
     id_category,
@@ -43,3 +51,12 @@ VALUES
     (
         'H001', 'Burger gà', 'Burger', '/images/hamburger_ga.jpg', 50000.00, 'LH001'
     );
+INSERT INTO food_ingredients (
+    quantity_used,
+    id_ingredient,
+    id_food
+) VALUES
+      (1.00, 'NL001', 'H002'),
+      (0.20, 'NL002', 'H002'),
+      (1.00, 'NL003', 'H003'),
+      (1.00, 'NL004', 'H004');
