@@ -15,7 +15,7 @@ VALUES
         'U_001',
         'Nguyen Van A',
         'ADMIN',
-        'a123456',
+        '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
         'R_001'
     );
 
