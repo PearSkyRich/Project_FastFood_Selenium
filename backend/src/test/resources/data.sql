@@ -6,16 +6,16 @@ VALUES
 INSERT INTO users(
     id_user,
     fullname,
-    password_hash,
     username,
+    password,
     role_id
 )
 VALUES
     (
         'U_001',
-     'Nguyen Van A',
-        '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
+        'Nguyen Van A',
         'ADMIN',
+        '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
         'R_001'
     );
 
