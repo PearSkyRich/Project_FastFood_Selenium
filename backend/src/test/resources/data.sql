@@ -18,7 +18,7 @@ VALUES
     );
 
 
-INSERT INTO food_category(
+INSERT INTO food_categories(
     id_category,
     name
 )
