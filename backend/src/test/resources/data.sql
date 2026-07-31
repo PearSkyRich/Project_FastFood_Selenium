@@ -55,7 +55,7 @@ VALUES
 INSERT INTO foods(
     id_food,
     description,
-    name,
+    food_name,
     image_url_food,
     price,
     id_category
