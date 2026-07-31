@@ -272,7 +272,58 @@ class FoodImplTest {
 
         verify(foodRepository).save(food);
     }
+    @Test
+    void createFood_WhenNoExistingFood_ShouldGenerateH001() {
 
+        FoodRequest request = new FoodRequest();
+
+        Food food = new Food();
+        food.setFoodIngredients(new ArrayList<>());
+
+        when(foodMapper.toFoodEntity(request))
+                .thenReturn(food);
+
+        when(foodRepository.findMaxidFood())
+                .thenReturn(null);
+
+        when(foodRepository.save(food))
+                .thenReturn(food);
+
+        when(foodMapper.toFoodKitchenResponse(food))
+                .thenReturn(new FoodKitchenResponse());
+
+        service.createFood(request);
+        assertEquals(
+                "H001",
+                food.getIdFood()
+        );
+    }
+    @Test
+    void createFood_SetParentReference() {
+
+        FoodRequest request = new FoodRequest();
+
+        FoodIngredient item = new FoodIngredient();
+
+        Food food = new Food();
+        food.setFoodIngredients(new ArrayList<>(List.of(item)));
+
+        when(foodMapper.toFoodEntity(request))
+                .thenReturn(food);
+
+        when(foodRepository.findMaxidFood())
+                .thenReturn("H001");
+
+        when(foodRepository.save(food))
+                .thenReturn(food);
+
+        when(foodMapper.toFoodKitchenResponse(food))
+                .thenReturn(new FoodKitchenResponse());
+
+        service.createFood(request);
+
+        assertSame(food, item.getFood());
+    }
     //====================================================
     // updateFood
     //====================================================
@@ -342,7 +393,41 @@ class FoodImplTest {
 
         verify(foodRepository).save(food);
     }
+    @Test
+    void updateFood_WithIngredients() {
 
+        FoodIngredientRequest ingredientRequest = new FoodIngredientRequest();
+        ingredientRequest.setIdIngredient("NL001");
+        ingredientRequest.setQuantityUsed(BigDecimal.valueOf(2));
+
+        FoodRequest request = new FoodRequest();
+        request.setIngredients(List.of(ingredientRequest));
+
+        Food existing = new Food();
+        existing.setFoodIngredients(new ArrayList<>());
+
+        FoodIngredient ingredient = new FoodIngredient();
+
+        when(foodRepository.findById("H001"))
+                .thenReturn(Optional.of(existing));
+
+        when(foodMapper.toFoodIngredientEntity(ingredientRequest))
+                .thenReturn(ingredient);
+
+        when(foodRepository.save(existing))
+                .thenReturn(existing);
+
+        when(foodMapper.toFoodKitchenResponse(existing))
+                .thenReturn(new FoodKitchenResponse());
+
+        service.updateFood("H001", request);
+
+        assertEquals(1, existing.getFoodIngredients().size());
+
+        assertEquals(existing, ingredient.getFood());
+
+        verify(foodMapper).toFoodIngredientEntity(ingredientRequest);
+    }
     //====================================================
     // deleteFood
     //====================================================
@@ -365,6 +450,19 @@ class FoodImplTest {
                 .deleteById("H001");
 
         verifyNoMoreInteractions(foodRepository);
+    }
+    @Test
+    void deleteFood_WhenRepositoryError_ShouldThrowException(){
+
+        doThrow(new RuntimeException())
+                .when(foodRepository)
+                .deleteById("H001");
+
+
+        assertThrows(
+                RuntimeException.class,
+                () -> service.deleteFood("H001")
+        );
     }
     //====================================================
     // getFoodCosts
@@ -404,7 +502,27 @@ class FoodImplTest {
                 BigDecimal.valueOf(300),
                 result.get(0).getGrossProfit());
     }
+    @Test
+    void getFoodCosts_WhenSalePriceZero_ShouldMarginZero(){
 
+        Food food = new Food();
+
+        food.setUnitPrice(BigDecimal.ZERO);
+        food.setFoodIngredients(new ArrayList<>());
+
+
+        when(foodRepository.findAllWithIngredients())
+                .thenReturn(List.of(food));
+
+
+        var result = service.getFoodCosts();
+
+
+        assertEquals(
+                BigDecimal.ZERO,
+                result.get(0).getMarginPercent()
+        );
+    }
     @Test
     void getFoodCosts_NoIngredient() {
 
@@ -540,100 +658,6 @@ class FoodImplTest {
                 .findAllWithIngredients();
     }
     @Test
-    void updateFood_WithIngredients() {
-
-        FoodIngredientRequest ingredientRequest = new FoodIngredientRequest();
-        ingredientRequest.setIdIngredient("NL001");
-        ingredientRequest.setQuantityUsed(BigDecimal.valueOf(2));
-
-        FoodRequest request = new FoodRequest();
-        request.setIngredients(List.of(ingredientRequest));
-
-        Food existing = new Food();
-        existing.setFoodIngredients(new ArrayList<>());
-
-        FoodIngredient ingredient = new FoodIngredient();
-
-        when(foodRepository.findById("H001"))
-                .thenReturn(Optional.of(existing));
-
-        when(foodMapper.toFoodIngredientEntity(ingredientRequest))
-                .thenReturn(ingredient);
-
-        when(foodRepository.save(existing))
-                .thenReturn(existing);
-
-        when(foodMapper.toFoodKitchenResponse(existing))
-                .thenReturn(new FoodKitchenResponse());
-
-        service.updateFood("H001", request);
-
-        assertEquals(1, existing.getFoodIngredients().size());
-
-        assertEquals(existing, ingredient.getFood());
-
-        verify(foodMapper).toFoodIngredientEntity(ingredientRequest);
-    }
-    @Test
-    void getAllMenu_StockNull() {
-
-        Ingredient ingredient = new Ingredient();
-        ingredient.setQuantityStock(null);
-
-        FoodIngredient item = new FoodIngredient();
-        item.setIngredient(ingredient);
-        item.setQuantityUsed(BigDecimal.ONE);
-
-        Food food = new Food();
-        food.setFoodIngredients(List.of(item));
-
-        FoodMenuResponse response = new FoodMenuResponse();
-
-        when(foodRepository.findAll()).thenReturn(List.of(food));
-        when(foodMapper.toFoodMenuResponse(food)).thenReturn(response);
-
-        List<FoodMenuResponse> result = service.getAllMenu();
-
-        assertFalse(result.get(0).isAvailable());
-    }
-    @Test
-    void getAllMenu_QuantityUsedNull() {
-
-        Ingredient ingredient = new Ingredient();
-        ingredient.setQuantityStock(BigDecimal.ONE);
-
-        FoodIngredient item = new FoodIngredient();
-        item.setIngredient(ingredient);
-        item.setQuantityUsed(null);
-
-        Food food = new Food();
-        food.setFoodIngredients(List.of(item));
-
-        FoodMenuResponse response = new FoodMenuResponse();
-
-        when(foodRepository.findAll()).thenReturn(List.of(food));
-        when(foodMapper.toFoodMenuResponse(food)).thenReturn(response);
-
-        List<FoodMenuResponse> result = service.getAllMenu();
-
-        assertTrue(result.get(0).isAvailable());
-    }
-    @Test
-    void getAllMenu_NoIngredient() {
-
-        Food food = new Food();
-        food.setFoodIngredients(new ArrayList<>());
-
-        FoodMenuResponse response = new FoodMenuResponse();
-
-        when(foodRepository.findAll()).thenReturn(List.of(food));
-        when(foodMapper.toFoodMenuResponse(food)).thenReturn(response);
-
-        List<FoodMenuResponse> result = service.getAllMenu();
-
-        assertTrue(result.get(0).isAvailable());
-    }
-    @Test
     void getFoodCosts_IngredientNull() {
 
         FoodIngredient item = new FoodIngredient();
@@ -696,30 +720,141 @@ class FoodImplTest {
         assertEquals(BigDecimal.ZERO,
                 result.get(0).getProductionCost());
     }
-    @Test
-    void createFood_SetParentReference() {
 
-        FoodRequest request = new FoodRequest();
+    //====================================================
+    // getMenu
+    //====================================================
+
+    @Test
+    void getAllMenu_StockNull() {
+
+        Ingredient ingredient = new Ingredient();
+        ingredient.setQuantityStock(null);
 
         FoodIngredient item = new FoodIngredient();
+        item.setIngredient(ingredient);
+        item.setQuantityUsed(BigDecimal.ONE);
 
         Food food = new Food();
-        food.setFoodIngredients(new ArrayList<>(List.of(item)));
+        food.setFoodIngredients(List.of(item));
 
-        when(foodMapper.toFoodEntity(request))
-                .thenReturn(food);
+        FoodMenuResponse response = new FoodMenuResponse();
 
-        when(foodRepository.findMaxidFood())
-                .thenReturn("H001");
+        when(foodRepository.findAll()).thenReturn(List.of(food));
+        when(foodMapper.toFoodMenuResponse(food)).thenReturn(response);
 
-        when(foodRepository.save(food))
-                .thenReturn(food);
+        List<FoodMenuResponse> result = service.getAllMenu();
 
-        when(foodMapper.toFoodKitchenResponse(food))
-                .thenReturn(new FoodKitchenResponse());
+        assertFalse(result.get(0).isAvailable());
+    }
+    @Test
+    void getAllMenu_QuantityUsedNull() {
 
-        service.createFood(request);
+        Ingredient ingredient = new Ingredient();
+        ingredient.setQuantityStock(BigDecimal.ONE);
 
-        assertSame(food, item.getFood());
+        FoodIngredient item = new FoodIngredient();
+        item.setIngredient(ingredient);
+        item.setQuantityUsed(null);
+
+        Food food = new Food();
+        food.setFoodIngredients(List.of(item));
+
+        FoodMenuResponse response = new FoodMenuResponse();
+
+        when(foodRepository.findAll()).thenReturn(List.of(food));
+        when(foodMapper.toFoodMenuResponse(food)).thenReturn(response);
+
+        List<FoodMenuResponse> result = service.getAllMenu();
+
+        assertTrue(result.get(0).isAvailable());
+    }
+    @Test
+    void getAllMenu_NoIngredient() {
+
+        Food food = new Food();
+        food.setFoodIngredients(new ArrayList<>());
+
+        FoodMenuResponse response = new FoodMenuResponse();
+
+        when(foodRepository.findAll()).thenReturn(List.of(food));
+        when(foodMapper.toFoodMenuResponse(food)).thenReturn(response);
+
+        List<FoodMenuResponse> result = service.getAllMenu();
+
+        assertTrue(result.get(0).isAvailable());
+    }
+
+    @Test
+    void getAllMenu_WhenIngredientNull_ShouldThrowException() {
+
+        FoodIngredient item = new FoodIngredient();
+        item.setIngredient(null);
+        item.setQuantityUsed(BigDecimal.ONE);
+
+
+        Food food = new Food();
+        food.setFoodIngredients(List.of(item));
+
+
+        FoodMenuResponse response =
+                new FoodMenuResponse();
+
+
+        when(foodRepository.findAll())
+                .thenReturn(List.of(food));
+
+        when(foodMapper.toFoodMenuResponse(food))
+                .thenReturn(response);
+
+
+        assertThrows(
+                NullPointerException.class,
+                () -> service.getAllMenu()
+        );
+    }
+    @Test
+    void getMenuById_NotAvailable(){
+
+        Food food = createFood(
+                BigDecimal.ONE,
+                BigDecimal.TEN
+        );
+
+        FoodMenuResponse response =
+                new FoodMenuResponse();
+
+        response.setAvailable(true);
+        when(foodRepository.findById("H001"))
+                .thenReturn(Optional.of(food));
+
+        when(foodMapper.toFoodMenuResponse(food))
+                .thenReturn(response);
+
+        FoodMenuResponse result =
+                service.getMenuById("H001");
+
+        assertFalse(result.isAvailable());
+    }
+    @Test
+    void getMenuById_NoIngredients_ShouldAvailable(){
+
+        Food food = new Food();
+        food.setFoodIngredients(null);
+
+        FoodMenuResponse response = new FoodMenuResponse();
+
+        when(foodRepository.findById("H001"))
+                .thenReturn(Optional.of(food));
+
+        when(foodMapper.toFoodMenuResponse(food))
+                .thenReturn(response);
+
+
+        FoodMenuResponse result =
+                service.getMenuById("H001");
+
+
+        assertTrue(result.isAvailable());
     }
 }

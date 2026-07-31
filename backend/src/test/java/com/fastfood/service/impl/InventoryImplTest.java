@@ -17,13 +17,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -121,6 +121,249 @@ class InventoryImplTest {
         verify(ingredientRepository, times(1)).save(ingredient);
         verify(stockReceiptRepository, times(1)).delete(receipt);
     }
+    @Test
+    void createStockReceipt_success() {
+
+        Ingredient ingredient =
+                buildIngredient("NL001", BigDecimal.TEN);
+
+        StockReceiptRequest request =
+                StockReceiptRequest.builder()
+                        .receiptDate(LocalDate.now())
+                        .supplierName("NCC A")
+                        .status("CHO")
+                        .createdBy("U001")
+                        .details(List.of(
+                                buildDetailRequest("NL001", "5")
+                        ))
+                        .build();
+
+        when(stockReceiptRepository.findMaxIdReceipt())
+                .thenReturn("PN001");
+
+        when(ingredientRepository.findById("NL001"))
+                .thenReturn(Optional.of(ingredient));
+
+        when(stockReceiptRepository.save(any()))
+                .thenAnswer(i -> i.getArgument(0));
+
+        StockReceiptResponse response =
+                inventoryService.createStockReceipt(request);
+
+        assertNotNull(response);
+
+        assertEquals(
+                "PN002",
+                response.getIdReceipt()
+        );
+        assertEquals(
+                "CHO",
+                response.getStatus()
+        );
+        verify(stockReceiptRepository)
+                .save(any(StockReceipt.class));
+    }
+
+    @Test
+    void createStockReceipt_emptyDetails_throwException(){
+
+        StockReceiptRequest request =
+                StockReceiptRequest.builder()
+                        .supplierName("NCC")
+                        .details(new ArrayList<>())
+                        .build();
+
+        RuntimeException ex =
+                assertThrows(
+                        RuntimeException.class,
+                        () -> inventoryService.createStockReceipt(request)
+                );
+        assertEquals(
+                "Phiếu nhập phải có ít nhất 1 nguyên liệu",
+                ex.getMessage()
+        );
+    }
+
+    @Test
+    void createStockReceipt_ingredientNotFound(){
+
+        StockReceiptRequest request =
+                StockReceiptRequest.builder()
+                        .details(List.of(
+                                buildDetailRequest("NL999","2")
+                        ))
+                        .build();
+
+        when(stockReceiptRepository.findMaxIdReceipt())
+                .thenReturn(null);
+
+        when(ingredientRepository.findById("NL999"))
+                .thenReturn(Optional.empty());
+
+        assertThrows(
+                RuntimeException.class,
+                () -> inventoryService.createStockReceipt(request)
+        );
+    }
+
+    @Test
+    void getAllStockReceipts_success(){
+
+        StockReceipt receipt =
+                buildReceipt(
+                        "PN001",
+                        "CHO",
+                        new ArrayList<>()
+                );
+
+        when(stockReceiptRepository.findAll())
+                .thenReturn(List.of(receipt));
+
+        List<StockReceiptResponse> result =
+                inventoryService.getAllStockReceipts();
+
+        assertEquals(
+                1,
+                result.size()
+        );
+        assertEquals(
+                "PN001",
+                result.get(0).getIdReceipt()
+        );
+    }
+
+    @Test
+    void updateStockReceipt_notFound(){
+
+        when(stockReceiptRepository.findById("PN999"))
+                .thenReturn(Optional.empty());
+
+        assertThrows(
+                RuntimeException.class,
+                () -> inventoryService.updateStockReceipt(
+                        "PN999",
+                        new StockReceiptRequest()
+                )
+        );
+    }
+
+    @Test
+    void updateStockReceipt_alreadyReceived_throwException(){
+
+        StockReceipt receipt =
+                buildReceipt(
+                        "PN001",
+                        "DA_NHAP",
+                        new ArrayList<>()
+                );
+
+        when(stockReceiptRepository.findById("PN001"))
+                .thenReturn(Optional.of(receipt));
+
+        assertThrows(
+                RuntimeException.class,
+                () -> inventoryService.updateStockReceipt(
+                        "PN001",
+                        new StockReceiptRequest()
+                )
+        );
+    }
+
+    @Test
+    void deleteStockReceipt_whenCho_shouldNotRollback(){
+
+        Ingredient ingredient =
+                buildIngredient(
+                        "NL001",
+                        BigDecimal.TEN
+                );
+
+
+        StockReceipt receipt =
+                buildReceipt(
+                        "PN001",
+                        "CHO",
+                        new ArrayList<>()
+                );
+
+        when(stockReceiptRepository.findById("PN001"))
+                .thenReturn(Optional.of(receipt));
+
+        inventoryService.deleteStockReceipt("PN001");
+
+        assertEquals(
+                BigDecimal.TEN,
+                ingredient.getQuantityStock()
+        );
+
+        verify(
+                ingredientRepository,
+                never()
+        ).save(any());
+    }
+
+    @Test
+    void getLowStockItems_success(){
+
+        Ingredient ingredient =
+                buildIngredient(
+                        "NL001",
+                        BigDecimal.valueOf(5)
+                );
+
+        when(ingredientRepository.findAll())
+                .thenReturn(List.of(ingredient));
+
+        var result =
+                inventoryService.getLowStockItems();
+
+        assertEquals(
+                1,
+                result.size()
+        );
+
+        assertTrue(
+                result.get(0).isLowStock()
+        );
+    }
+
+    @Test
+    void getConsumptionHistory_success(){
+
+        Object[] row = {
+                Date.valueOf("2026-01-01"),
+                "NL001",
+                "image.png",
+                "Thịt",
+                "kg",
+                BigDecimal.TEN,
+                BigDecimal.valueOf(2)
+        };
+
+
+        when(orderDetailRepository
+                .getIngredientConsumptionHistory(
+                        any(LocalDate.class),
+                        any(LocalDate.class)
+                ))
+                .thenReturn(List.<Object[]>of(row));
+
+        var result =
+                inventoryService.getConsumptionHistory(
+                        LocalDate.now(),
+                        LocalDate.now()
+                );
+
+        assertEquals(1, result.size());
+
+        assertEquals(
+                1,
+                result.get(0)
+                        .getItems()
+                        .size()
+        );
+    }
+
 
     private Ingredient buildIngredient(String id, BigDecimal stock) {
         Ingredient ingredient = new Ingredient();
