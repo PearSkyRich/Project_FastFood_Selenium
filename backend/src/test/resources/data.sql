@@ -5,9 +5,9 @@ VALUES
 
 INSERT INTO users(
     id_user,
-    fullname,
+    full_name,
     username,
-    password,
+    password_hash,
     role_id
 )
 VALUES
