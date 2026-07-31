@@ -100,7 +100,6 @@ INSERT INTO food_ingredients
 (id_food, id_ingredient, quantity_used)
 VALUES
     ('H001','NL001',1.00),
-    ('H001','NL003',0.05),
     ('H003','NL002',1.00);
 
 
