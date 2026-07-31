@@ -6,16 +6,16 @@ VALUES
 INSERT INTO users(
     id_user,
     fullname,
-    username,
     password_hash,
+    username,
     role_id
 )
 VALUES
     (
         'U_001',
      'Nguyen Van A',
-        'ADMIN',
         '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
+        'ADMIN',
         'R_001'
     );
 
@@ -41,5 +41,5 @@ INSERT INTO foods(
 )
 VALUES
     (
-        'H001', NULL, 'Burger', NULL, 50000.00, NULL
+        'H001', NULL, 'Burger', NULL, 50000.00, 'LH001'
     );
