@@ -20,7 +20,7 @@ VALUES
 
 INSERT INTO food_categories(
     id_category,
-    name
+    category_name
 )
 VALUES
     (
@@ -33,7 +33,7 @@ INSERT INTO food(
     id_food,
     name,
     price,
-    category_id
+    id_category
 )
 VALUES
     (
