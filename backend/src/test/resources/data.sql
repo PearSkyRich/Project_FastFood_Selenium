@@ -5,6 +5,7 @@ VALUES
 
 INSERT INTO users(
     id_user,
+    fullname,
     username,
     password_hash,
     role_id
@@ -12,6 +13,7 @@ INSERT INTO users(
 VALUES
     (
         'U_001',
+     'Nguyen Van A',
         'ADMIN',
         '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
         'R_001'
@@ -31,7 +33,9 @@ VALUES
 
 INSERT INTO foods(
     id_food,
+    description,
     name,
+    image_url_food,
     price,
     id_category
 )
