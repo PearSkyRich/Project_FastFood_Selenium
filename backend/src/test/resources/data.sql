@@ -57,7 +57,7 @@ INSERT INTO foods(
     description,
     food_name,
     image_url_food,
-    price,
+    unit_price,
     id_category
 )
 VALUES
