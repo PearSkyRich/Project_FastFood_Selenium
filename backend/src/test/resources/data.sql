@@ -74,14 +74,14 @@ VALUES
     ('NL001',
      '/images/thit_bo.jpg',
      'Thịt bò',
-     20.00,
+     10.00,
      'kg',
      100000),
 
     ('NL002',
      '/images/canh_ga.jpg',
      'Cánh gà',
-     50.00,
+     10,
      'cái',
      15000),
 
@@ -99,7 +99,7 @@ VALUES
 INSERT INTO food_ingredients
 (id_food, id_ingredient, quantity_used)
 VALUES
-    ('H001','NL002',1.00),
+    ('H001','NL001',1.00),
     ('H001','NL003',0.05),
     ('H003','NL002',1.00);
 
