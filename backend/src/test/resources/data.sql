@@ -15,7 +15,7 @@ VALUES
         'U_001',
         'Nguyen Van A',
         'ADMIN',
-        '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
+        'a123456',
         'R_001'
     );
 INSERT INTO ingredients (
