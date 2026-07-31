@@ -13,7 +13,7 @@ VALUES
     (
         'U_001',
         'ADMIN',
-        'a123456',
+        '$2a$12$YHD6AB9wIjMWVJetjp5fSOk2PIMEX2yTzL8t8qkUPbU47T2OR0WPW',
         'R_001'
     );
 
@@ -29,7 +29,7 @@ VALUES
     );
 
 
-INSERT INTO food(
+INSERT INTO foods(
     id_food,
     name,
     price,
@@ -37,8 +37,5 @@ INSERT INTO food(
 )
 VALUES
     (
-        'H001',
-        'Chicken Burger',
-        50000,
-        'LH001'
+        'H001', NULL, 'Burger', NULL, 50000.00, NULL
     );
