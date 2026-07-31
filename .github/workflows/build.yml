@@ -31,6 +31,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Show git commit and data.sql
+        run: |
+          echo "GIT HEAD: $(git rev-parse HEAD)"
+          echo "data.sql (repo):"
+          sed -n '1,200p' backend/src/test/resources/data.sql || true
+
       - uses: actions/setup-java@v4
         with:
           distribution: zulu
@@ -48,6 +54,26 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+
+      - name: Install mysql client & wait for MySQL
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y default-mysql-client
+          echo "Waiting for MySQL to accept connections..."
+          for i in $(seq 1 30); do
+            mysql -h 127.0.0.1 -P 3306 -u root -proot -e "SELECT 1" && break
+            echo "MySQL not ready yet - retrying ($i)..."
+            sleep 2
+          done
+          echo "Ensure database exists"
+          mysql -h 127.0.0.1 -P 3306 -u root -proot -e "CREATE DATABASE IF NOT EXISTS fastfood_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+      - name: Prepare test-classes and show compiled data.sql
+        working-directory: backend
+        run: |
+          mvn -q -DskipTests=true test-compile
+          echo "test-classes data.sql:"
+          sed -n '1,200p' target/test-classes/data.sql || true
 
       - name: Build and analyze
         working-directory: backend
