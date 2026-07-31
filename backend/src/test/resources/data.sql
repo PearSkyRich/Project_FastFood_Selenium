@@ -27,9 +27,9 @@ VALUES
 INSERT INTO food_categories
 (id_category, category_name)
 VALUES
-    ('CAT001', 'Gà rán'),
-    ('CAT002', 'Nước uống'),
-    ('CAT003', 'Combo');
+    ('LH001', 'Gà rán'),
+    ('LH002', 'Nước uống'),
+    ('LH003', 'Combo');
 
 
 -- =========================
@@ -38,21 +38,21 @@ VALUES
 INSERT INTO foods
 (id_food, image_url_food, food_name, id_category, unit_price, description)
 VALUES
-    ('F001',
+    ('H001',
      '/images/ga_ran.jpg',
      'Đùi gà chiên giòn',
      'CAT001',
      35000,
      'Đùi gà chiên giòn'),
 
-    ('F002',
+    ('H002',
      '/images/pepsi.jpg',
      'Pepsi',
      'CAT002',
      15000,
      'Nước ngọt Pepsi'),
 
-    ('F003',
+    ('H003',
      '/images/combo1.jpg',
      'Combo gà + nước',
      'CAT003',
@@ -99,9 +99,9 @@ VALUES
 INSERT INTO food_ingredients
 (id_food, id_ingredient, quantity_used)
 VALUES
-    ('F001','NL002',1.00),
-    ('F001','NL003',0.05),
-    ('F003','NL002',1.00);
+    ('H001','NL002',1.00),
+    ('H001','NL003',0.05),
+    ('H003','NL002',1.00);
 
 
 -- =========================
