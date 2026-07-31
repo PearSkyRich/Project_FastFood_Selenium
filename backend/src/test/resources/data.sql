@@ -41,5 +41,5 @@ INSERT INTO foods(
 )
 VALUES
     (
-        'H001', NULL, 'Burger', NULL, 50000.00, 'LH001'
+        'H001', 'Burger gà', 'Burger', '/images/hamburger_ga.jpg', 50000.00, 'LH001'
     );
