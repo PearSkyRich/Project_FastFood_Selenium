@@ -41,21 +41,21 @@ VALUES
     ('H001',
      '/images/ga_ran.jpg',
      'Đùi gà chiên giòn',
-     'CAT001',
+     'LH001',
      35000,
      'Đùi gà chiên giòn'),
 
     ('H002',
      '/images/pepsi.jpg',
      'Pepsi',
-     'CAT002',
+     'LH002',
      15000,
      'Nước ngọt Pepsi'),
 
     ('H003',
      '/images/combo1.jpg',
      'Combo gà + nước',
-     'CAT003',
+     'LH003',
      50000,
      'Combo tiết kiệm');
 
@@ -134,13 +134,13 @@ INSERT INTO order_details
  status)
 VALUES
     ('ORD001',
-     'F001',
+     'H001',
      2,
      35000,
      'PENDING'),
 
     ('ORD001',
-     'F002',
+     'H002',
      1,
      15000,
      'SERVED');
