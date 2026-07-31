@@ -24,7 +24,7 @@ INSERT INTO food_category(
 )
 VALUES
     (
-        'C_001',
+        'LH001',
         'Chicken'
     );
 
@@ -37,8 +37,8 @@ INSERT INTO food(
 )
 VALUES
     (
-        'F_001',
+        'H001',
         'Chicken Burger',
         50000,
-        'C_001'
+        'LH001'
     );
