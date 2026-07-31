@@ -3,10 +3,10 @@
 -- =========================
 INSERT INTO roles (id_role, role_name)
 VALUES
-    ('R_001', 'ADMIN'),
+    ('R_001', 'admin'),
     ('R_002', 'ThuNgan'),
     ('R_003', 'Bep'),
-    ('R_004', 'Ban');
+    ('R_004', 'Ban01');
 
 
 -- =========================
