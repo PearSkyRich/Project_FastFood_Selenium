@@ -209,7 +209,7 @@ This repository highlights my contributions in **Software Testing and Quality As
 
 ## Documentation
 
-[[Software Quality Assurance Report](https://pearskyrich.github.io/Project_FastFood_Selenium/Project_FastFoodShop_Testing.docx)]
+[[Software Quality Assurance Report](https://pearskyrich.github.io/Project_FastFood_Selenium/Project_FastFoodShop_Testing.pdf)]
 
 
 ## Acknowledgements
