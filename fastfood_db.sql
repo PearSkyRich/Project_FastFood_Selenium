@@ -1,19 +1,19 @@
-
+create database fastfood_db
 -- Bảng roles (Quyền)
-INSERT INTO roles (id_role, role_name) VALUES 
+INSERT INTO roles (id_role, role_name) VALUES
 ('R_001', 'ADMIN'),
 ('R_002', 'Thu ngân'),
 ('R_003', 'Bếp'),
 ('R_004', 'Khách hàng');
 
 -- Bảng food_categories (Danh mục món ăn)
-INSERT INTO food_categories (id_category, category_name) VALUES 
+INSERT INTO food_categories (id_category, category_name) VALUES
 ('LH001', 'FOOD'),
 ('LH002', 'DRINK'),
 ('LH003', 'COMBO');
 
 -- Bảng nguyên liệu
-INSERT INTO ingredients (id_ingredient, image_url_ingredient, ingredient_name, unit, quantity_stock, import_price) VALUES 
+INSERT INTO ingredients (id_ingredient, image_url_ingredient, ingredient_name, unit, quantity_stock, import_price) VALUES
 ('NL001', '/images/dui_ga.jpg', 'Đùi gà', 'Cái', 100.00,10000),
 ('NL002', '/images/canh_ga.jpg', 'Cánh gà', 'Cái', 100.00, 10000),
 ('NL003', '/images/ga_xay.jpg', 'Gà xay', 'Kg', 40.00, 10000),
@@ -31,24 +31,24 @@ INSERT INTO ingredients (id_ingredient, image_url_ingredient, ingredient_name, u
 
 -- 2. BẢNG CẤP 1 (Phụ thuộc vào các bảng trên)
 -- Bảng users (Nhân viên)
-INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
+INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES
 ('U_001', 'Nguyễn Văn A', 'a123456', 'ADMIN' , 'R_001'),
 ('U_002', 'Nguyễn Thị B', 'a123456', 'ThuNgan' , 'R_002'),
 ('U_003', 'Nguyễn Văn C', 'a123456', 'Bep' , 'R_003'),
 ('U_004', 'Bàn 01', 'a123456', 'Ban01' , 'R_004');
 
-INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
+INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES
 ('U_005', 'Bàn 02', 'a123456', 'Ban02' , 'R_004');
 
-INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
+INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES
 ('U_006', 'Bàn 03', 'a123456', 'Ban03' , 'R_004');
 
-INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
+INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES
 ('U_007', 'Bàn 04', 'a123456', 'Ban04' , 'R_004');
 
 
--- Bảng Món ăn 
-INSERT INTO foods (id_food, image_url_food, food_name, id_category, unit_price, description) VALUES 
+-- Bảng Món ăn
+INSERT INTO foods (id_food, image_url_food, food_name, id_category, unit_price, description) VALUES
 -- Món lẻ
 ('H001', '/images/dui_ga_chien_gion.jpg', 'Đùi gà chiên giòn', 'LH001', 45000.00, 'Đùi gà chiên giòn rụn, ngọt từng thớ thịt'),
 ('H002', '/images/canh_ga_chien_gion_sot_cay.jpg', 'Cánh gà chiên giòn sốt cay', 'LH001', 35000.00, 'Cánh gà giòn từng miếng, đậm vị cay'),
@@ -75,31 +75,31 @@ INSERT INTO foods (id_food, image_url_food, food_name, id_category, unit_price, 
 
 -- BẢNG CHUẨN HÓA ĐỊNH MỨC NGUYÊN LIỆU (food_ingredients)
 select * from ingredients;
-INSERT INTO food_ingredients (id_food, id_ingredient, quantity_used) VALUES 
+INSERT INTO food_ingredients (id_food, id_ingredient, quantity_used) VALUES
 -- 1. Đùi gà chiên giòn (H001): 1 Đùi gà + Bột chiên giòn
-('H001', 'NL001', 1.00), 
+('H001', 'NL001', 1.00),
 ('H001', 'NL009', 0.05),
 
 -- 2. Cánh gà chiên giòn (H002): 1 Cánh gà + Bột chiên giòn
-('H002', 'NL002', 1.00), 
+('H002', 'NL002', 1.00),
 ('H002', 'NL009', 0.05),
 
 -- 3. Hamburger Gà chiên (H003): 1 Vỏ bánh + 0.15kg Gà xay + Bột xù
-('H003', 'NL006', 1.00), 
+('H003', 'NL006', 1.00),
 ('H003', 'NL003', 0.15),
 ('H003', 'NL010', 0.05),
 
 -- 4. Hamburger Bò Phô Mai (H004): 1 Vỏ bánh + 0.15kg Bò xay
-('H004', 'NL006', 1.00), 
+('H004', 'NL006', 1.00),
 ('H004', 'NL004', 0.15),
 
 -- 5. Hamburger Tôm Chiên (H005): 1 Vỏ bánh + 0.15kg Tôm xay + Bột xù
-('H005', 'NL006', 1.00), 
+('H005', 'NL006', 1.00),
 ('H005', 'NL005', 0.15),
 ('H005', 'NL010', 0.05),
 
 -- 6. Mỳ ý (H006): 1 Túi mỳ + 0.1kg Bò xay (làm nước xốt)
-('H006', 'NL007', 1.00), 
+('H006', 'NL007', 1.00),
 ('H006', 'NL004', 0.10),
 
 -- 7. Khoai tây chiên to (H007): 0.25kg Khoai
@@ -115,7 +115,7 @@ INSERT INTO food_ingredients (id_food, id_ingredient, quantity_used) VALUES
 ('H010', 'NL011', 1.00), -- Coca
 ('H011', 'NL012', 1.00), -- 7up
 ('H012', 'NL013', 1.00), -- Fanta
-('H013', 'NL014', 1.00), -- Pepsi 
+('H013', 'NL014', 1.00), -- Pepsi
 -- =========================================================
 -- ĐỊNH MỨC CHO CÁC COMBO (Cộng dồn nguyên liệu từ các món đơn)
 -- =========================================================
