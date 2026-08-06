@@ -218,4 +218,4 @@ This repository highlights my contributions in **Software Testing and Quality As
 The Fast Food Management System reviewed in this repository was developed by another project team.
 This repository contains only the Software Quality Assurance (SQA) review conducted as part of the Software Quality Assurance course.
 Original Project:
-https://github.com/username/fast-food-management-system
+[Github](https://github.com/duy110405/Project_FastFoodShop)
