@@ -1,5 +1,4 @@
-create database fastfood_db;
--- 1. BẢNG ĐỘC LẬP (Không phụ thuộc khóa ngoại, chạy trước)
+
 -- Bảng roles (Quyền)
 INSERT INTO roles (id_role, role_name) VALUES 
 ('R_001', 'ADMIN'),
@@ -33,19 +32,19 @@ INSERT INTO ingredients (id_ingredient, image_url_ingredient, ingredient_name, u
 -- 2. BẢNG CẤP 1 (Phụ thuộc vào các bảng trên)
 -- Bảng users (Nhân viên)
 INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
-('U_001', 'Nguyễn Văn A', '123456', 'ADMIN' , 'R_001'),
-('U_002', 'Nguyễn Thị B', '123456', 'ThuNgan' , 'R_002'),
-('U_003', 'Nguyễn Văn C', '123456', 'Bep' , 'R_003'),
-('U_004', 'Bàn 01', '123456', 'Ban01' , 'R_004');
+('U_001', 'Nguyễn Văn A', 'a123456', 'ADMIN' , 'R_001'),
+('U_002', 'Nguyễn Thị B', 'a123456', 'ThuNgan' , 'R_002'),
+('U_003', 'Nguyễn Văn C', 'a123456', 'Bep' , 'R_003'),
+('U_004', 'Bàn 01', 'a123456', 'Ban01' , 'R_004');
 
 INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
-('U_005', 'Bàn 02', '123456', 'Ban02' , 'R_004');
+('U_005', 'Bàn 02', 'a123456', 'Ban02' , 'R_004');
 
 INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
-('U_006', 'Bàn 03', '123456', 'Ban03' , 'R_004');
+('U_006', 'Bàn 03', 'a123456', 'Ban03' , 'R_004');
 
 INSERT INTO users (id_user, full_name, password_hash, username , role_id) VALUES 
-('U_007', 'Bàn 04', '123456', 'Ban04' , 'R_004');
+('U_007', 'Bàn 04', 'a123456', 'Ban04' , 'R_004');
 
 
 -- Bảng Món ăn 

@@ -1,12 +1,20 @@
 [
   {
+    "testCaseId": "TC_LOGIN_007",
+    "priority": "High",
+    "title": "Login with invalid Admin account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "admin",
-    "password": "111111",
+    "password": "1111",
     "expectedUrl": "/login"
   },
   {
-    "username": "test",
-    "password": "test",
+    "testCaseId": "TC_LOGIN_008",
+    "priority": "High",
+    "title": "Login with invalid Cashier account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
+    "username": "ThuNgan",
+    "password": "1111",
     "expectedUrl": "/login"
   }
 ]

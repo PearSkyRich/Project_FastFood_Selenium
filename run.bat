@@ -26,6 +26,6 @@ echo Running Selenium Tests...
 echo ==============================
 
 cd automation
-call mvn clean test -Dtest=MultiUserOrderTest
+call mvn clean test -Dtest=LoginTests
 
 pause

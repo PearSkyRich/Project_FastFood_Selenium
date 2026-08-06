@@ -2,19 +2,39 @@ package com.fastfood.model;
 
 public class LoginData {
 
-    private String username;
-    private String password;
-
-    public void setExpectedUrl(String expectedUrl) {
-        this.expectedUrl = expectedUrl;
+    public String getTestCaseId() {
+        return testCaseId;
     }
 
-    public String getExpectedUrl() {
-        return expectedUrl;
+    public void setTestCaseId(String testCaseId) {
+        this.testCaseId = testCaseId;
     }
 
-    private String expectedUrl;
-    private boolean expected;
+    private String testCaseId;
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTestStep() {
+        return testStep;
+    }
+
+    public void setTestStep(String testStep) {
+        this.testStep = testStep;
+    }
 
     public String getUsername() {
         return username;
@@ -32,12 +52,21 @@ public class LoginData {
         this.password = password;
     }
 
-    public boolean isExpected() {
-        return expected;
+    public String getExpectedUrl() {
+        return expectedUrl;
     }
 
-    public void setExpected(boolean expected) {
-        this.expected = expected;
+    public void setExpectedUrl(String expectedUrl) {
+        this.expectedUrl = expectedUrl;
     }
+
+    private String priority;
+    private String title;
+    private String testStep;
+
+    private String username;
+    private String password;
+    private String expectedUrl;
+
 
 }

@@ -5,36 +5,41 @@ import com.fastfood.utils.JsonUtils;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class LoginDataProvider {
 
     @DataProvider(name = "loginSuccessData")
-    public static Object[][] loginSuccessData() throws Exception {
+    public Object[][] loginSuccessData() {
 
         LoginData[] data =
-                JsonUtils.readData("validlogin.json", LoginData[].class);
+                JsonUtils.readData(
+                        "validlogin.json",
+                        LoginData[].class);
 
-        return Arrays.stream(data)
-                .map(d -> new Object[]{
-                        d.getUsername(),
-                        d.getPassword(),
-                        d.getExpectedUrl()
-                })
-                .toArray(Object[][]::new);
+        Object[][] result = new Object[data.length][1];
+
+        for (int i = 0; i < data.length; i++) {
+            result[i][0] = data[i];
+        }
+
+        return result;
     }
 
     @DataProvider(name = "loginFailData")
-    public static Object[][] loginFailData() throws Exception {
+    public Object[][] loginFailData() {
 
         LoginData[] data =
-                JsonUtils.readData("invalidlogin.json", LoginData[].class);
+                JsonUtils.readData(
+                        "invalidlogin.json",
+                        LoginData[].class);
 
-        return Arrays.stream(data)
-                .map(d -> new Object[]{
-                        d.getUsername(),
-                        d.getPassword(),
-                        d.getExpectedUrl()
-                })
-                .toArray(Object[][]::new);
+        Object[][] result = new Object[data.length][1];
+
+        for (int i = 0; i < data.length; i++) {
+            result[i][0] = data[i];
+        }
+
+        return result;
     }
 }

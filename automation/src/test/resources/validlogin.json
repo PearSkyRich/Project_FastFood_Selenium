@@ -1,35 +1,63 @@
 [
   {
+    "testCaseId": "TC_LOGIN_001",
+    "priority": "High",
+    "title": "Login with valid Admin account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "admin",
     "password": "a123456",
-    "expectedUrl": "/admin/dashboard"
+    "expectedUrl": "/dashboard"
   },
   {
+    "testCaseId": "TC_LOGIN_002",
+    "priority": "High",
+    "title": "Login with valid Cashier account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "ThuNgan",
     "password": "a123456",
     "expectedUrl": "/payment"
   },
   {
+    "testCaseId": "TC_LOGIN_003",
+    "priority": "High",
+    "title": "Login with valid Kitchen account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "Bep",
     "password": "a123456",
     "expectedUrl": "/kitchen"
   },
   {
+    "testCaseId": "TC_LOGIN_004",
+    "priority": "High",
+    "title": "Login with valid Table 01 account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "Ban01",
     "password": "a123456",
     "expectedUrl": "/menu"
   },
   {
+    "testCaseId": "TC_LOGIN_005",
+    "priority": "High",
+    "title": "Login with valid Table 02 account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "Ban02",
     "password": "a123456",
     "expectedUrl": "/menu"
   },
   {
+    "testCaseId": "TC_LOGIN_006",
+    "priority": "High",
+    "title": "Login with valid Table 03 account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "Ban03",
     "password": "a123456",
     "expectedUrl": "/menu"
   },
   {
+    "testCaseId": "TC_LOGIN_007",
+    "priority": "High",
+    "title": "Login with valid Table 04 account",
+    "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "Ban04",
     "password": "a123456",
     "expectedUrl": "/menu"

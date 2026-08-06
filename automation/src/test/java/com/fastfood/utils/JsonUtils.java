@@ -4,20 +4,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.InputStream;
 
-public class JsonUtils {
+public final class JsonUtils {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    public static <T> T[] readData(String fileName, Class<T[]> clazz) throws Exception {
+    private JsonUtils() {
+    }
 
-        InputStream input = JsonUtils.class
+    public static <T> T[] readData(String fileName, Class<T[]> clazz) {
+
+        try (InputStream input = JsonUtils.class
                 .getClassLoader()
-                .getResourceAsStream(fileName);
+                .getResourceAsStream(fileName)) {
 
-        if (input == null) {
-            throw new RuntimeException("Không tìm thấy file: " + fileName);
+            if (input == null) {
+                throw new RuntimeException("Cannot find file: " + fileName);
+            }
+
+            return MAPPER.readValue(input, clazz);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot read json file: " + fileName, e);
         }
-
-        return mapper.readValue(input, clazz);
     }
 }
