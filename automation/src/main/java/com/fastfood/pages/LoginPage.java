@@ -31,7 +31,12 @@ public class LoginPage {
     public void clickLogin() {
         driver.findElement(btnLogin).click();
     }
+    private By txtError =
+            By.cssSelector(".error-alert");
 
+    public String getErrorMessage() {
+        return driver.findElement(txtError).getText();
+    }
     public void login(String username, String password) {
 
         enterUsername(username);

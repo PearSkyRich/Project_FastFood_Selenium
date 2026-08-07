@@ -67,6 +67,13 @@ public class LoginData {
     private String username;
     private String password;
     private String expectedUrl;
+    private String expectedMessage;
 
+    public String getExpectedMessage() {
+        return expectedMessage;
+    }
 
+    public void setExpectedMessage(String expectedMessage) {
+        this.expectedMessage = expectedMessage;
+    }
 }

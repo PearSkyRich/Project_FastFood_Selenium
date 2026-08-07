@@ -6,7 +6,8 @@
     "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "admin",
     "password": "1111",
-    "expectedUrl": "/login"
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
   },
   {
     "testCaseId": "TC_LOGIN_008",
@@ -15,6 +16,97 @@
     "testStep": "1. Open Login page\n2. Enter username and password\n3. Click Login button",
     "username": "ThuNgan",
     "password": "1111",
-    "expectedUrl": "/login"
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
+  },
+  {
+    "testCaseId": "TC_LOGIN_009",
+    "priority": "Medium",
+    "title": "Login with empty username",
+    "testStep": "1. Open Login page\n2. Leave username blank\n3. Enter valid password\n4. Click Login button",
+    "username": "",
+    "password": "123456",
+    "expectedUrl": "/login",
+    "expectedMessage": "Please fill out this field."
+  },
+  {
+    "testCaseId": "TC_LOGIN_010",
+    "priority": "Medium",
+    "title": "Login with empty password",
+    "testStep": "1. Open Login page\n2. Enter valid username\n3. Leave password blank\n4. Click Login button",
+    "username": "ADMIN",
+    "password": "",
+    "expectedUrl": "/login",
+    "expectedMessage": "Please fill out this field."
+  },
+  {
+    "testCaseId": "TC_LOGIN_011",
+    "priority": "Medium",
+    "title": "Login with empty username and password",
+    "testStep": "1. Open Login page\n2. Leave username and password blank\n3. Click Login button",
+    "username": "",
+    "password": "",
+    "expectedUrl": "/login",
+    "expectedMessage": "Please fill out this field."
+  },
+  {
+    "testCaseId": "TC_LOGIN_012",
+    "priority": "High",
+    "title": "Login with SQL Injection payload",
+    "testStep": "1. Open Login page\n2. Enter SQL Injection payload\n3. Click Login button",
+    "username": "' OR '1'='1",
+    "password": "' OR '1'='1",
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
+  },
+  {
+    "testCaseId": "TC_LOGIN_013",
+    "priority": "High",
+    "title": "Login with SQL Injection in username only",
+    "testStep": "1. Open Login page\n2. Enter SQL Injection in username\n3. Enter valid password\n4. Click Login button",
+    "username": "'; DROP TABLE users; --",
+    "password": "123456",
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
+  },
+  {
+    "testCaseId": "TC_LOGIN_014",
+    "priority": "Medium",
+    "title": "Login with special characters",
+    "testStep": "1. Open Login page\n2. Enter special characters\n3. Click Login button",
+    "username": "@#$%^&*",
+    "password": "!@#$%^",
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
+  },
+  {
+    "testCaseId": "TC_LOGIN_015",
+    "priority": "Medium",
+    "title": "Login with script injection",
+    "testStep": "1. Open Login page\n2. Enter XSS payload\n3. Click Login button",
+    "username": "<script>alert('XSS')</script>",
+    "password": "123456",
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
+  },
+  {
+    "testCaseId": "TC_LOGIN_016",
+    "priority": "Low",
+    "title": "Login with leading and trailing spaces",
+    "testStep": "1. Open Login page\n2. Enter username and password with spaces\n3. Click Login button",
+    "username": "  ADMIN  ",
+    "password": " 123456 ",
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
+  },
+  {
+    "testCaseId": "TC_LOGIN_017",
+    "priority": "Low",
+    "title": "Login with very long username",
+    "testStep": "1. Open Login page\n2. Enter username longer than allowed\n3. Click Login button",
+    "username": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "password": "123456",
+    "expectedUrl": "/login",
+    "expectedMessage": "Sai tài khoản hoặc mật khẩu!"
   }
 ]

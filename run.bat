@@ -1,5 +1,6 @@
 @echo off
-
+set DB_USERNAME=root
+set DB_PASSWORD=Ltp16082005#
 :: Chuyển đến thư mục chứa file .bat
 cd /d "%~dp0"
 
