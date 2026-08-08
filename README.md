@@ -2,206 +2,265 @@
 
 ## Overview
 
-This repository contains my Software Testing work for the **FastFood Management System**, a web-based restaurant management application developed using **Spring Boot** and **React**.
+This repository contains the Software Testing and Quality Assurance work for the **FastFood Management System**, a web-based restaurant management application.
 
-Although the application was originally developed by a project team, my primary responsibility focused on designing, implementing, and automating software testing to improve system reliability and software quality.
+The system supports key restaurant operations including **food management, order and cart management, kitchen management, payment, inventory, and table management**. fileciteturn1file7L523-L559
 
----
-
-# My Contributions
-
-## Unit Testing
-
-- Developed **199 Unit Test cases** using **JUnit 5** and **Mockito**.
-- Tested:
-  - Controllers
-  - Service Layer
-  - Mapper Classes
-- Covered normal cases, boundary cases, and exception handling.
-- Generated code coverage reports using **JaCoCo**.
+My main responsibility in this project focused on **software testing, test case design, test automation, code coverage analysis, performance testing, and defect identification**.
 
 ---
 
-## Integration Testing
+## Testing Scope
 
-Implemented **21 Integration Tests** using:
+The project applies multiple levels and types of testing:
 
-- Spring Boot Test
-- MockMvc
-- MySQL Test Database
+- **Manual Functional Testing**
+- **Unit Testing**
+- **Integration Testing**
+- **Automation Testing**
+- **Performance Testing**
+- **Code Coverage Analysis**
+- **Defect Management**
 
-Verified:
+### Main Functional Areas
 
-- REST API endpoints
+- Authentication & Authorization
+- Food Management
+- Order & Cart
+- Kitchen Management
+- Payment Management
+- Inventory Management
+- Table Management
+
+---
+
+## Testing Tools & Technologies
+
+| Category | Tools |
+|---|---|
+| Backend | Java, Spring Boot |
+| Frontend | ReactJS, Vite |
+| Database | MySQL 8.x |
+| Unit Testing | JUnit 5, Mockito |
+| Integration Testing | Spring Boot Test, MockMvc |
+| Automation | Selenium WebDriver, TestNG |
+| Performance Testing | Apache JMeter |
+| Code Coverage | JaCoCo |
+| Code Quality | SonarQube / SonarCloud |
+| Build Tool | Maven |
+| Version Control | Git, GitHub |
+| CI/CD | GitHub Actions |
+
+fileciteturn1file1L39-L64 fileciteturn1file1L85-L126
+
+---
+
+## Manual Testing
+
+A total of **194 Manual Test Cases** were executed:
+
+- Login: **18**
+- Admin: **59**
+- Order & Cart: **39**
+- Kitchen: **38**
+- Payment & Table: **40**
+
+### Result
+
+- **PASS:** 165
+- **FAIL:** 22
+- **SKIPPED:** 6
+- **BLOCKED:** 1
+
+Testing covered positive, negative, validation, boundary, role-based and business-rule scenarios.
+
+---
+
+## Unit & Integration Testing
+
+### Unit Testing
+
+Unit tests were implemented for backend components such as:
+
+- Controller
+- Service
+- Mapper
 - Business logic
-- Database transactions
-- Repository interactions
-- Controller-Service-Repository integration
+- Exception handling
+
+JUnit 5 and Mockito were used for isolated component testing.
+
+### Integration Testing
+
+Integration testing focused on interactions between:
+
+- Controller
+- Service
+- Repository
+- Database
+- Frontend & Backend
+- Authentication & Authorization
+- Order & Kitchen
+- Order, Payment & Table
+
+Spring Boot Test and MockMvc were used for API and integration verification.
 
 ---
 
-## End-to-End Testing
+## Automation Testing
 
-Built automated UI tests using:
+Automation testing was implemented using:
 
-- Selenium WebDriver
-- Java
-- TestNG
-- Page Object Model (POM)
+- **Java**
+- **Selenium WebDriver**
+- **TestNG**
+- **Maven**
+- **Page Object Model**
 
-Implemented automated scenarios:
+### Automated Test Cases
 
-- User Login
-- Add Food to Cart
-- Multi-user Ordering
-- Order Processing
+| Test Case | Description |
+|---|---|
+| Login Test 1 | Valid login |
+| Login Test 2 | Invalid login |
+| Add to Cart | Add food to cart |
+| Order | Create an order |
+
+### Result
+
+**4/4 Test Cases Passed — 100%**
+
+The automation suite focuses on important and repeatable business flows and can be extended for regression testing. fileciteturn1file3L250-L259
+
+---
+
+## Code Coverage
+
+Backend code coverage was measured using **JaCoCo**.
+
+| Metric | Coverage |
+|---|---:|
+| Instruction | 92% |
+| Branch | 72% |
+| Line | 92% |
+| Method | 95% |
+| Class | 96% |
+
+The results show high overall code coverage, while branch coverage remains an area for further improvement. fileciteturn1file3L225-L249
 
 ---
 
 ## Performance Testing
 
-Designed JMeter test plans to evaluate system performance.
+Performance testing was conducted using **Apache JMeter**.
 
-Test scenarios include:
+### Configuration
 
-- Concurrent user login
-- Multiple users placing orders simultaneously
-- API response time
-- Throughput
-- Error rate
-- Stress and Load Testing
+- Concurrent Users: **10**
+- Loop Count: **5**
+- Total Samples: **100**
 
----
+### Results
 
-## Continuous Integration & Code Quality
+| Metric | Result |
+|---|---:|
+| Average Response Time | 13 ms |
+| Minimum Response Time | 4 ms |
+| Maximum Response Time | 29 ms |
+| Error Rate | 0% |
+| Throughput | 97.8 requests/sec |
 
-Configured automated testing pipeline using:
-
-- Maven
-- GitHub Actions
-- JaCoCo
-- SonarQube
-
-Pipeline automatically:
-
-- Build project
-- Execute Unit Tests
-- Execute Integration Tests
-- Generate Code Coverage Report
-- Perform Static Code Analysis
+The system performed stably under the tested load. Further testing with higher concurrent users is recommended to identify the system's scalability limits. fileciteturn1file3L260-L292
 
 ---
 
-# Technologies
+## Defect Management
 
-## Backend
+Testing identified several issues, particularly in:
 
-- Java 21
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- Hibernate
-- MySQL
+- Input validation
+- API error handling
+- Data consistency
+- Synchronization between modules
+- Concurrent data processing
 
-## Frontend
-
-- React
-- Vite
-- Ant Design
-
-## Testing
-
-- JUnit 5
-- Mockito
-- Spring Boot Test
-- MockMvc
-- Selenium WebDriver
-- TestNG
-- Apache JMeter
-- JaCoCo
-
-## DevOps
-
-- Maven
-- GitHub Actions
-- SonarQube
+Performance testing also identified a **Duplicate Key / Primary Key conflict** under concurrent requests, related to the current ID generation mechanism. fileciteturn1file2L140-L142
 
 ---
 
-# Testing Summary
+## Test Environment
 
-| Test Type | Quantity |
-|------------|---------:|
-| Unit Tests | 199 |
-| Integration Tests | 21 |
-| Selenium End-to-End Tests | 4 |
-| Performance Tests | Multiple JMeter Scenarios |
+- OS: Windows 11
+- CPU: Intel Core i5
+- RAM: 16 GB
+- Storage: 1 TB SSD
+- JDK: 21
+- MySQL: 8.x
+- Maven: 3.x
+- Chrome
+- Selenium: 4.35.0
+- TestNG: 7.11.0
+- Apache JMeter: 5.x fileciteturn1file2L144-L198
 
 ---
 
-# Project Structure
+## Project Structure
 
-```
-backend/
+```text
+Project_FastFoodShop_Testing/
 │
-├── src/main
-├── src/test
-│   ├── unit
-│   ├── integration
-│   └── resources
+├── backend/
+│   └── Spring Boot application
 │
-frontend/
+├── frontend/
+│   └── React + Vite application
 │
-automation/
-│   ├── pages
-│   ├── tests
-│   ├── data
-│   └── reports
+├── automation/
+│   └── Selenium + TestNG automation tests
 │
-docs/
+├── test-cases/
+│   └── Manual test cases and test data
+│
+├── performance/
+│   └── JMeter test plans
+│
+└── README.md
 ```
 
 ---
 
-# Key Testing Features
+## Key Results
 
-✔ Unit Testing
-
-✔ Integration Testing
-
-✔ REST API Testing
-
-✔ UI Automation Testing
-
-✔ Performance Testing
-
-✔ Code Coverage Analysis
-
-✔ Static Code Analysis
-
-✔ Continuous Integration
+- **194** Manual Test Cases executed
+- **165** Manual Test Cases passed
+- **4/4** Automation Test Cases passed
+- **92%** Instruction Coverage
+- **92%** Line Coverage
+- **95%** Method Coverage
+- **96%** Class Coverage
+- **13 ms** Average Response Time
+- **0%** Performance Test Error Rate
+- **97.8 requests/sec** Throughput
 
 ---
 
-# Skills Demonstrated
+## Future Improvements
 
-- Software Testing
-- Test Automation
-- Unit Testing
-- Integration Testing
-- End-to-End Testing
-- Performance Testing
-- REST API Testing
-- Selenium WebDriver
-- JUnit 5
-- Mockito
-- MockMvc
-- Apache JMeter
-- GitHub Actions
-- SonarQube
-- Maven
+- Expand Selenium automation coverage to Admin, Kitchen and Payment modules.
+- Increase Unit and Integration Test coverage.
+- Improve Branch Coverage.
+- Perform Performance Testing with higher concurrent users.
+- Expand cross-browser testing.
+- Improve defect tracking and reporting.
+- Integrate automated testing into the CI/CD pipeline. fileciteturn1file5L356-L359
 
 ---
+
+## Conclusion
+
+This project demonstrates a practical Software Testing and Quality Assurance process covering **Manual Testing, Unit Testing, Integration Testing, Automation Testing, Performance Testing, Code Coverage and Defect Management**.
+
+The testing activities helped identify functional defects, evaluate backend code coverage, validate automated business flows, and assess system performance under concurrent requests.
 
 # Notes
 
