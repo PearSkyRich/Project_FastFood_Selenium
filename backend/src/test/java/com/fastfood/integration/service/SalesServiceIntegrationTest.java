@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -26,8 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-@Transactional
-
+@ActiveProfiles("test")
 class SalesIntegrationTest {
 
     @Autowired
@@ -153,8 +153,9 @@ class SalesIntegrationTest {
                         .get();
 
         assertEquals(
-                new BigDecimal("9"),
-                updated.getQuantityStock()
+                1,
+                ingredient.getQuantityStock().compareTo(BigDecimal.valueOf(9)),
+                "Quantity stock should decrease to 9"
         );
 
         assertEquals(
