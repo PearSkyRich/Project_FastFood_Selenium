@@ -92,8 +92,6 @@ Project_FastFoodShop_Testing/
 ├── test-cases/
 │   └── Manual test cases and test data
 │
-├── performance/
-│   └── JMeter test plans
 │
 └── README.md
 ```
