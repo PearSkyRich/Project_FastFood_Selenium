@@ -1,0 +1,5 @@
+com\fastfood\Main.class
+com\fastfood\pages\MenuPage.class
+com\fastfood\pages\PaymentPage.class
+com\fastfood\pages\KitchenPage.class
+com\fastfood\pages\LoginPage.class

@@ -26,7 +26,7 @@ echo ==============================
 echo Running Selenium Tests...
 echo ==============================
 
-cd automation
-call mvn clean test -Dtest=LoginTests
+cd backend
+call mvn clean test
 
 pause

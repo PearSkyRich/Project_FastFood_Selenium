@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="18" passed="18" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-08-07T14:26:04 ICT" name="Surefire suite" finished-at="2026-08-07T14:26:40 ICT" duration-ms="35460">
+    <groups>
+    </groups>
+    <test started-at="2026-08-07T14:26:04 ICT" name="Surefire test" finished-at="2026-08-07T14:26:40 ICT" duration-ms="35460">
+      <class name="com.fastfood.tests.LoginTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:04 ICT" name="setup" finished-at="2026-08-07T14:26:06 ICT" duration-ms="1570" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:06 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:07 ICT" duration-ms="1320" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@1c12f3ee]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:07 ICT" name="tearDown" finished-at="2026-08-07T14:26:07 ICT" duration-ms="143" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:07 ICT" name="setup" finished-at="2026-08-07T14:26:09 ICT" duration-ms="1227" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:09 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:09 ICT" duration-ms="767" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@242b6e1a]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:09 ICT" name="tearDown" finished-at="2026-08-07T14:26:09 ICT" duration-ms="119" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:09 ICT" name="setup" finished-at="2026-08-07T14:26:11 ICT" duration-ms="1352" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:11 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:11 ICT" duration-ms="199" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@3f50b680]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:11 ICT" name="tearDown" finished-at="2026-08-07T14:26:11 ICT" duration-ms="127" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:11 ICT" name="setup" finished-at="2026-08-07T14:26:12 ICT" duration-ms="1144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:12 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:12 ICT" duration-ms="245" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@7af3874e]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:12 ICT" name="tearDown" finished-at="2026-08-07T14:26:13 ICT" duration-ms="118" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:13 ICT" name="setup" finished-at="2026-08-07T14:26:14 ICT" duration-ms="1158" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:14 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:14 ICT" duration-ms="215" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@5e8507f1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:14 ICT" name="tearDown" finished-at="2026-08-07T14:26:14 ICT" duration-ms="122" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:14 ICT" name="setup" finished-at="2026-08-07T14:26:15 ICT" duration-ms="1257" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:15 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:16 ICT" duration-ms="230" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@6ca30b8a]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:16 ICT" name="tearDown" finished-at="2026-08-07T14:26:16 ICT" duration-ms="114" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:16 ICT" name="setup" finished-at="2026-08-07T14:26:17 ICT" duration-ms="1049" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:17 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:17 ICT" duration-ms="748" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@4dc7cd1c]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:17 ICT" name="tearDown" finished-at="2026-08-07T14:26:18 ICT" duration-ms="124" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:18 ICT" name="setup" finished-at="2026-08-07T14:26:19 ICT" duration-ms="1131" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:19 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:19 ICT" duration-ms="771" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@4b862408]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:20 ICT" name="tearDown" finished-at="2026-08-07T14:26:20 ICT" duration-ms="150" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:20 ICT" name="setup" finished-at="2026-08-07T14:26:21 ICT" duration-ms="1149" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:21 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:22 ICT" duration-ms="786" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@1c8f6c66]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:22 ICT" name="tearDown" finished-at="2026-08-07T14:26:22 ICT" duration-ms="116" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:22 ICT" name="setup" finished-at="2026-08-07T14:26:23 ICT" duration-ms="1113" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:23 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:23 ICT" duration-ms="243" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@15986dd5]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:23 ICT" name="tearDown" finished-at="2026-08-07T14:26:23 ICT" duration-ms="159" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:23 ICT" name="setup" finished-at="2026-08-07T14:26:24 ICT" duration-ms="1068" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginFailTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:24 ICT" name="loginFailTest" data-provider="loginFailData" finished-at="2026-08-07T14:26:25 ICT" duration-ms="810" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@18709cb2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:25 ICT" name="tearDown" finished-at="2026-08-07T14:26:25 ICT" duration-ms="144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:25 ICT" name="setup" finished-at="2026-08-07T14:26:26 ICT" duration-ms="1159" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginSuccessTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:26 ICT" name="loginSuccessTest" data-provider="loginSuccessData" finished-at="2026-08-07T14:26:27 ICT" duration-ms="727" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@62cbc478]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccessTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:27 ICT" name="tearDown" finished-at="2026-08-07T14:26:27 ICT" duration-ms="182" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:27 ICT" name="setup" finished-at="2026-08-07T14:26:28 ICT" duration-ms="1155" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginSuccessTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:28 ICT" name="loginSuccessTest" data-provider="loginSuccessData" finished-at="2026-08-07T14:26:29 ICT" duration-ms="728" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@15d236fd]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccessTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:29 ICT" name="tearDown" finished-at="2026-08-07T14:26:29 ICT" duration-ms="159" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:29 ICT" name="setup" finished-at="2026-08-07T14:26:31 ICT" duration-ms="1166" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginSuccessTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:31 ICT" name="loginSuccessTest" data-provider="loginSuccessData" finished-at="2026-08-07T14:26:31 ICT" duration-ms="713" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@1537e43]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccessTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:31 ICT" name="tearDown" finished-at="2026-08-07T14:26:31 ICT" duration-ms="142" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:31 ICT" name="setup" finished-at="2026-08-07T14:26:33 ICT" duration-ms="1140" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginSuccessTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:33 ICT" name="loginSuccessTest" data-provider="loginSuccessData" finished-at="2026-08-07T14:26:33 ICT" duration-ms="726" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@4af7dd6a]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccessTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:33 ICT" name="tearDown" finished-at="2026-08-07T14:26:33 ICT" duration-ms="159" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:33 ICT" name="setup" finished-at="2026-08-07T14:26:35 ICT" duration-ms="1257" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginSuccessTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:35 ICT" name="loginSuccessTest" data-provider="loginSuccessData" finished-at="2026-08-07T14:26:35 ICT" duration-ms="681" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@66a82a13]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccessTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:35 ICT" name="tearDown" finished-at="2026-08-07T14:26:35 ICT" duration-ms="159" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:35 ICT" name="setup" finished-at="2026-08-07T14:26:37 ICT" duration-ms="1101" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginSuccessTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:37 ICT" name="loginSuccessTest" data-provider="loginSuccessData" finished-at="2026-08-07T14:26:37 ICT" duration-ms="692" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@6c6c2a73]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccessTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:37 ICT" name="tearDown" finished-at="2026-08-07T14:26:37 ICT" duration-ms="206" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:37 ICT" name="setup" finished-at="2026-08-07T14:26:39 ICT" duration-ms="1181" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginSuccessTest(com.fastfood.model.LoginData)[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:39 ICT" name="loginSuccessTest" data-provider="loginSuccessData" finished-at="2026-08-07T14:26:39 ICT" duration-ms="677" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.fastfood.model.LoginData@e795a1d]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginSuccessTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:39 ICT" name="tearDown" finished-at="2026-08-07T14:26:40 ICT" duration-ms="206" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="saveReport()[pri:0, instance:com.fastfood.tests.LoginTests@6580cfdd]" started-at="2026-08-07T14:26:40 ICT" name="saveReport" finished-at="2026-08-07T14:26:40 ICT" duration-ms="743" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveReport -->
+      </class> <!-- com.fastfood.tests.LoginTests -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

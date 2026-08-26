@@ -1,0 +1,10 @@
+com\fastfood\base\MultiUserBaseTest.class
+com\fastfood\tests\MultiUserOrderTest.class
+com\fastfood\tests\LoginTests.class
+com\fastfood\utils\DriverFactory.class
+com\fastfood\data\LoginDataProvider.class
+com\fastfood\utils\JsonUtils.class
+com\fastfood\tests\AddtoCartTest.class
+com\fastfood\base\BaseTest.class
+com\fastfood\utils\ExcelReport.class
+com\fastfood\model\LoginData.class
