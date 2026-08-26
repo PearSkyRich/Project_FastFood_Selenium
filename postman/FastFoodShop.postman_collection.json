@@ -17,27 +17,10 @@
             {
               "listen": "test",
               "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "let json = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Login successful\", function () {\r",
-                  "    pm.expect(json.username).to.not.be.undefined;\r",
-                  "    pm.expect(json.fullName).to.not.be.undefined;\r",
-                  "    pm.expect(json.role).to.not.be.undefined;\r",
-                  "});\r",
-                  "\r",
-                  "// Lưu thông tin người dùng để dùng cho các request khác\r",
-                  "pm.environment.set(\"username\", json.username);\r",
-                  "pm.environment.set(\"fullName\", json.fullName);\r",
-                  "pm.environment.set(\"role\", json.role);"
-                ],
                 "type": "text/javascript",
-                "packages": {},
-                "requests": {}
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nlet json = pm.response.json();\r\n\r\npm.test(\"Login successful\", function () {\r\n    pm.expect(json.username).to.not.be.undefined;\r\n    pm.expect(json.fullName).to.not.be.undefined;\r\n    pm.expect(json.role).to.not.be.undefined;\r\n});\r\n\r\n// Lưu thông tin người dùng để dùng cho các request khác\r\npm.environment.set(\"username\", json.username);\r\npm.environment.set(\"fullName\", json.fullName);\r\npm.environment.set(\"role\", json.role);"
+                ]
               }
             }
           ],
@@ -51,7 +34,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"username\": \"ADMIN\",\n    \"password\": \"a123456\"\n}"
+              "raw": "{\n    \"username\": \"ban02\",\n    \"password\": \"a123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/auth/login",
@@ -114,18 +102,10 @@
             {
               "listen": "test",
               "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Logout success\", function () {\r",
-                  "    pm.expect(pm.response.text()).to.include(\"Đăng xuất thành công\");\r",
-                  "});"
-                ],
                 "type": "text/javascript",
-                "packages": {},
-                "requests": {}
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Logout success\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Đăng xuất thành công\");\r\n});\r\n"
+                ]
               }
             }
           ],
@@ -156,7 +136,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": ""
+              "raw": "{{baseUrl}}/foods/menu",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foods",
+                "menu"
+              ]
             }
           },
           "response": []
@@ -167,7 +154,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": ""
+              "raw": "{{baseUrl}}/foods/H003",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foods",
+                "H003"
+              ]
             }
           },
           "response": []
@@ -346,7 +340,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": ""
+              "raw": "{{baseUrl}}/foodCategory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foodCategory"
+              ]
             }
           },
           "response": []
@@ -357,20 +357,10 @@
             {
               "listen": "test",
               "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Category updated\", function () {\r",
-                  "    let json = pm.response.json();\r",
-                  "    pm.expect(json.code).to.eql(200);\r",
-                  "    pm.expect(json.data.categoryName).to.eql(\"Đồ uống mới\");\r",
-                  "});"
-                ],
                 "type": "text/javascript",
-                "packages": {},
-                "requests": {}
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Category updated\", function () {\r\n    let json = pm.response.json();\r\n    pm.expect(json.code).to.eql(200);\r\n    pm.expect(json.data.categoryName).to.eql(\"Soda\");\r\n});"
+                ]
               }
             }
           ],
@@ -384,7 +374,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"categoryName\": \"Soda\"\n}"
+              "raw": "{\n    \"categoryName\": \"Soda\"\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/foodCategory/LH001",
@@ -405,20 +400,10 @@
             {
               "listen": "test",
               "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200 or 201\", function () {\r",
-                  "    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Category created\", function () {\r",
-                  "    let json = pm.response.json();\r",
-                  "    pm.expect(json.code).to.eql(201);\r",
-                  "    pm.expect(json.data.categoryName).to.eql(\"Đồ uống\");\r",
-                  "});"
-                ],
                 "type": "text/javascript",
-                "packages": {},
-                "requests": {}
+                "exec": [
+                  "pm.test(\"Status code is 200 or 201\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r\n});\r\n\r\npm.test(\"Category created\", function () {\r\n    let json = pm.response.json();\r\n    pm.expect(json.code).to.eql(201);\r\n    pm.expect(json.data.categoryName).to.eql(\"Cocktail\");\r\n});"
+                ]
               }
             }
           ],
@@ -432,7 +417,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"categoryName\": \"Cocktail\"\n}"
+              "raw": "{\n    \"categoryName\": \"Cocktail\"\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/foodCategory",
@@ -473,30 +463,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/foodCategory/LH004",
+              "raw": "{{baseUrl}}/foodCategory/LH007",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "foodCategory",
-                "LH004"
+                "LH007"
               ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Sales",
-      "item": [
-        {
-          "name": "Get Tables",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": ""
             }
           },
           "response": []
@@ -587,8 +561,26 @@
         {
           "name": "Create Ingredient",
           "request": {
-            "method": "GET",
-            "header": []
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ingredientName\": \"Đùi gà ta tươi\",\r\n    \"imageUrlIngredient\": \"/images/dui_ga.jpg\",\r\n    \"quantityStock\": 70,\r\n    \"unit\": \"Cái\",\r\n    \"importPrice\": 55000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ingredient",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ingredient"
+              ]
+            }
           },
           "response": []
         },
@@ -788,14 +780,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/inventory/receipts/PN001",
+              "raw": "{{baseUrl}}/inventory/receipts/PN006",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "inventory",
                 "receipts",
-                "PN001"
+                "PN006"
               ]
             }
           },
@@ -1313,7 +1305,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"orderId\": \"ORD019\",\r\n    \"customerPhone\": \"0987654321\",\r\n    \"paymentMethod\": \"TRANSFER\"\r\n}",
+              "raw": "{\r\n    \"orderId\": \"ORD031\",\r\n    \"customerPhone\": \"0987654321\",\r\n    \"paymentMethod\": \"TRANSFER\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1328,51 +1320,6 @@
               "path": [
                 "sales",
                 "payments"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Complete Order",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "let json = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Payment success\", function () {\r",
-                  "    pm.expect(json.code).to.eql(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Has payment data\", function () {\r",
-                  "    pm.expect(json.data).to.not.be.null;\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/sales/orders/ORD019/complete",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "sales",
-                "orders",
-                "ORD019",
-                "complete"
               ]
             }
           },
