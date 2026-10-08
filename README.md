@@ -52,7 +52,6 @@ Tested with **Apache JMeter**:
 | Error Rate | 0% |
 | Throughput | 97.8 req/s |
 
-fileciteturn1file3L260-L292
 
 ## Code Coverage
 
